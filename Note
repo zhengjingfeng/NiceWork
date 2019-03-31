@@ -1,0 +1,33 @@
+数据结构 1，存储数据的集合 2，存储的数据之间有特殊关系
+
+初阶数据结构 1，数组(Array)
+           2，链表(Linked List) 链表三要素(元素 元素地址 指针)
+           3,堆栈(Stack)
+           4，队列(Queue)
+           常用数据结构是线性结构
+
+高阶数据结构 1，树(Tree) 2,集(Set) 3, 映射(Map) 4,图(Graph) 非线性结构
+
+//git init  把一个文件夹变成git本地仓库
+//git status
+// git add(文件名) 把文件修改添加到暂存区
+//git checkout -- Note.txt 撤销缓存区修改  git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+// git commit（把add的代码提交到分支）把暂存区的所有内容添加到当前分支
+//git log 提交日志
+//git reset --Hard HEAD^ 回退上一个版本
+
+查看分支：git branch
+
+创建分支：git branch <name>
+
+切换分支：git checkout <name>
+
+创建+切换分支：git checkout -b <name>
+
+合并某分支到当前分支：git merge <name>
+
+删除分支：git branch -d <name>
+
+// git clone git branch git -- help(查看命令)
+// git checkout(剪出分支)
+//fork/clone(add commit push)

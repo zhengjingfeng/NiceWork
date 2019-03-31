@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SingleTouchView">
+        <attr name="src" format="reference" />
+        <!-- 用于缩放旋转的图标 -->
+        <attr name="editable" format="boolean" />
+        <!-- 是否处于可编辑状态 -->
+        <attr name="frameColor" format="color" />
+        <!-- 边框颜色 -->
+        <attr name="frameWidth" format="dimension" />
+        <!-- 边框线宽度 -->
+        <attr name="framePadding" format="dimension" />
+        <!-- 边框与图片的间距 -->
+        <attr name="degree" format="float" />
+        <!-- 旋转角度 -->
+        <attr name="scale" format="float" />
+        <!-- 缩放比例 -->
+        <attr name="rtDrawable" format="reference" />
+        <attr name="rbDrawable" format="reference" />
+        <attr name="ltDrawable" format="reference" />
+        <attr name="lbDrawable" format="reference" />
+        <!-- 控制图标 -->
+        <attr name="controlLocation">
+            <!-- 控制图标的位置 -->
+            <enum name="left_top" value="0" />
+            <enum name="right_top" value="1" />
+            <enum name="right_bottom" value="2" />
+            <enum name="left_bottom" value="3" />
+        </attr>
+
+        <attr name="android:layout_width" />
+        <attr name="android:layout_height" />
+    </declare-styleable>
+
+    <declare-styleable name="StepView">
+        <attr name="count" format="integer" />
+
+        <attr name="normal_line_color" format="color" />
+        <attr name="pass_line_color" format="color" />
+        <attr name="line_storoke_width" format="dimension" />
+
+        <attr name="text_color" format="color" />
+        <attr name="text_size" format="dimension" />
+        <attr name="text_to_line_margin" format="dimension" />
+
+        <attr name="margin" format="dimension" />
+
+        <!--默认文字在线条下面，线条距顶部距离、文字距底部距离-->
+        <attr name="line_to_top_margin" format="dimension" />
+        <attr name="text_to_bottom_margin" format="dimension" />
+
+        <attr name="step" format="enum">
+            <enum name="one" value="0" />
+            <enum name="two" value="1" />
+            <enum name="three" value="2" />
+            <enum name="four" value="3" />
+            <enum name="five" value="4" />
+        </attr>
+
+        <!--线条长度是否可变,默认是-->
+        <attr name="line_length" format="enum">
+            <enum name="variable_length" value="0" />
+            <enum name="fixed_length" value="1" />
+        </attr>
+
+        <!--根据最大步骤点数量，计算出线条长度不变时线条长度，线条长度可变时，该数据无效-->
+        <attr name="max_dot_count" format="integer" /> <!--文字是否在线条下面，默认是-->
+        <attr name="text_location" format="enum">
+            <enum name="down" value="0" />
+            <enum name="up" value="1" />
+        </attr>
+        <!--此 view 是否可点击-->
+        <attr name="is_view_clickable" format="boolean" />
+
+    </declare-styleable>
+
+
+</resources>
