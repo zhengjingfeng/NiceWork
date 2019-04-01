@@ -31,3 +31,5 @@
 // git clone git branch git -- help(查看命令)
 // git checkout(剪出分支)
 //fork/clone(add commit push)
+
+http 请求3位的返回码中 4开头代表客服端错误（404页面：file not found），5开头代表服务器错误
