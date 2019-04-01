@@ -153,5 +153,4 @@ public class MainActivity extends AppCompatActivity {
             return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
         }
     }
-
 }
