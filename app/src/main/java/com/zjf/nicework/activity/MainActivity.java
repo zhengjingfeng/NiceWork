@@ -146,8 +146,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
             LogUtil.d(TAG, "经纪人收取演出的费用");
-            Object result = method.invoke(target, args);
-            return result;
+            return method.invoke(target, args);
         }
 
         Object CreatProxyObj() {
@@ -156,6 +155,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-//1.onTouch返回true，则onTouchEvent和onClick都不会执行；
-//2.onTouch(onTouchListener)返回false，如果onTouchEvent不是返回super.onTouchEvent(event);也就算是说不管onTouchEvent返回true还是false，onClick(onCLickListener)都不会执行，这可以从super的源码看出（源码里会进行判断执行到OnCLickListener）,而且我们知道onClick执行也就会在触摸抬起(up)的时候执行；

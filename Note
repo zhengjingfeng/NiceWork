@@ -16,6 +16,12 @@
 //git log 提交日志
 //git reset --Hard HEAD^ 回退上一个版本
 
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:zhengjingfeng/git.git
+git push -u origin master
+
 查看分支：git branch
 
 创建分支：git branch <name>
@@ -35,3 +41,9 @@
 //网络请求开始
 http 请求3位的返回码中 4开头代表客服端错误（404页面：file not found），5开头代表服务器错误，当然200是正常响应
 cookie是客服端保持状态的方案 session是在服务端保持状态的方案
+
+//不同事件监听的优先级
+1.onTouch返回true，则onTouchEvent和onClick都不会执行；
+2.onTouch(onTouchListener)返回false，如果onTouchEvent不是返回super.onTouchEvent(event);
+  也就算是说不管onTouchEvent返回true还是false，onClick(onCLickListener)都不会执行，
+  这可以从super的源码看出（源码里会进行判断执行到OnCLickListener）,而且我们知道onClick执行也就会在触摸抬起(up)的时候执行；
