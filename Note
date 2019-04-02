@@ -61,3 +61,7 @@ px:像素 手机的分辨率 如：小米8的分辨率为 2248*1080 1px代表屏
 dip:dots per inch 对角线每英寸对应的像素点。dpi = \dfrac{\sqrt{height^2 + width^2}}{size}。
     height和width即为长宽的像素，平方和即为对角线的像素个数，size即我们常说的5寸手机、4寸手机中的5和4，即对角线的长度。 所以，一样是5寸的手机，分辨率越高，dpi越高。分辨率相同，屏幕对角线英寸数越小，dpi越高。
 重点：dp = px*(dpi/160) 再像素密度为160的屏幕上1dp = 1px
+   hdpi	160dpi-240dpi	800*480 (Wide VGA)	1dp = 1.5px
+   xhdpi	240dpi-320dpi	1280*720	           1dp = 2px
+   xxhdpi	320dpi-480dpi	1920*1080	           1dp = 3px
+   xxxhdpi	480dpi-640dpi	3840*2160	           1dp = 4px
