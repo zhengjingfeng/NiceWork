@@ -1,4 +1,3 @@
-
 package com.zjf.nicework.utils;
 
 /**
@@ -193,5 +192,4 @@ public final class LogUtils {
             }
         }
     }
-
 }
