@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.zjf.nicework.R;
 import com.zjf.nicework.utils.JniUtil;
-import com.zjf.nicework.utils.LogUtil;
+import com.zjf.nicework.utils.LogUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData() {
         int result = diGui(4);
-        LogUtil.d(TAG, "result:" + result);
+        LogUtils.d(TAG, "result:" + result);
         try {
             //输入流：文件读到内存 输出流：内存读到文件
             File file = new File(Environment.getExternalStoragePublicDirectory("Pictures"), "cs.jpg");
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             in.close();
             out.close();
 
-            LogUtil.d(TAG, System.getProperty("file.encoding"));
+            LogUtils.d(TAG, System.getProperty("file.encoding"));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,13 +124,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public String sing(String name) {
-            LogUtil.d(TAG, name);
+            LogUtils.d(TAG, name);
             return "唱完";
         }
 
         @Override
         public String dance(String name) {
-            LogUtil.d(TAG, name);
+            LogUtils.d(TAG, name);
             return "跳完";
         }
     }
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-            LogUtil.d(TAG, "经纪人收取演出的费用");
+            LogUtils.d(TAG, "经纪人收取演出的费用");
             return method.invoke(target, args);
         }
 
