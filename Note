@@ -65,3 +65,21 @@ dip:dots per inch 对角线每英寸对应的像素点。dpi = \dfrac{\sqrt{heig
    xhdpi	240dpi-320dpi	1280*720	           1dp = 2px
    xxhdpi	320dpi-480dpi	1920*1080	           1dp = 3px
    xxxhdpi	480dpi-640dpi	3840*2160	           1dp = 4px
+
+//依赖
+在都是本地依赖的前提下
+api依赖是可以传递的，可以形成依赖链，链条上的一个model发生改变，整个链条上的model都要重新编译；
+model的implementation对外是隐藏的，model改变后只需编译和它有implementation关系的model；
+api是对外公开的，implementation是内部实现，对外隐藏的
+
+//JSONObject 底层是通过HashMap保存键值对，是Android原生的类，构造方法中可以传Map，String, 底层是HashMap所以有keys（）,keySet（）方法。
+  JsonObject 底层是通过LinkedTreeMap保存键值对，需要添加gson jar包，有size（）方法。
+  
+//Android资源文件分为两种
+  1，res下资源会被编译，生成编译后的资源问价，和R.java类（资源字典，每个资源有唯一id）
+  2, assets下资源不会被编译，反编译后可以拿到这些资源文件
+     FileInputStream in = context.getResources().getAssets().open("a.txt"); 读取文件
+     String[] fileList = context.getResources().getAssets().list("dirPath")
+     
+//Style 针对窗体元素级别 view layout
+  Theme 针对窗体级别的 activity
