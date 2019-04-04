@@ -33,8 +33,6 @@ public class ThreadPoolManager {
         /**
          * 创建线程的工厂，设置线程的优先级，group，以及命名
          */
-
-
         long keepAliveTime = 1;
         TimeUnit unit = TimeUnit.HOURS;
         executor = new ThreadPoolExecutor(
@@ -88,7 +86,7 @@ public class ThreadPoolManager {
     }
 
     /**
-     * 执行任务  o0
+     * 执行任务
      */
     public void execute(Runnable runnable) {
         if (runnable == null) {
