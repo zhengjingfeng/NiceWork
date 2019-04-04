@@ -65,3 +65,9 @@ dip:dots per inch 对角线每英寸对应的像素点。dpi = \dfrac{\sqrt{heig
    xhdpi	240dpi-320dpi	1280*720	           1dp = 2px
    xxhdpi	320dpi-480dpi	1920*1080	           1dp = 3px
    xxxhdpi	480dpi-640dpi	3840*2160	           1dp = 4px
+
+//依赖
+在都是本地依赖的前提下
+api依赖是可以传递的，可以形成依赖链，链条上的一个model发生改变，整个链条上的model都要重新编译；
+model的implementation对外是隐藏的，model改变后只需编译和它有implementation关系的model；
+api是对外公开的，implementation是内部实现，对外隐藏的
