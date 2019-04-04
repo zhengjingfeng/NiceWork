@@ -74,3 +74,12 @@ api是对外公开的，implementation是内部实现，对外隐藏的
 
 //JSONObject 底层是通过HashMap保存键值对，是Android原生的类，构造方法中可以传Map，String, 底层是HashMap所以有keys（）,keySet（）方法。
   JsonObject 底层是通过LinkedTreeMap保存键值对，需要添加gson jar包，有size（）方法。
+  
+//Android资源文件分为两种
+  1，res下资源会被编译，生成编译后的资源问价，和R.java类（资源字典，每个资源有唯一id）
+  2, assets下资源不会被编译，反编译后可以拿到这些资源文件
+     FileInputStream in = context.getResources().getAssets().open("a.txt"); 读取文件
+     String[] fileList = context.getResources().getAssets().list("dirPath")
+     
+//Style 针对窗体元素级别 view layout
+  Theme 针对窗体级别的 activity
