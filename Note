@@ -71,3 +71,6 @@ dip:dots per inch 对角线每英寸对应的像素点。dpi = \dfrac{\sqrt{heig
 api依赖是可以传递的，可以形成依赖链，链条上的一个model发生改变，整个链条上的model都要重新编译；
 model的implementation对外是隐藏的，model改变后只需编译和它有implementation关系的model；
 api是对外公开的，implementation是内部实现，对外隐藏的
+
+//JSONObject 底层是通过HashMap保存键值对，是Android原生的类
+  JsonObject 底层是通过LinkedTreeMap保存键值对，需要添加gson jar包
