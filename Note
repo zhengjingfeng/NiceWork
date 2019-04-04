@@ -72,5 +72,5 @@ api依赖是可以传递的，可以形成依赖链，链条上的一个model发
 model的implementation对外是隐藏的，model改变后只需编译和它有implementation关系的model；
 api是对外公开的，implementation是内部实现，对外隐藏的
 
-//JSONObject 底层是通过HashMap保存键值对，是Android原生的类
-  JsonObject 底层是通过LinkedTreeMap保存键值对，需要添加gson jar包
+//JSONObject 底层是通过HashMap保存键值对，是Android原生的类，构造方法中可以传Map，String, 底层是HashMap所以有keys（）,keySet（）方法。
+  JsonObject 底层是通过LinkedTreeMap保存键值对，需要添加gson jar包，有size（）方法。
