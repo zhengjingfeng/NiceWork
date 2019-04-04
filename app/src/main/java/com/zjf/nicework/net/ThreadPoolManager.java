@@ -49,7 +49,7 @@ public class ThreadPoolManager {
                 new LinkedBlockingQueue<Runnable>(),
                 //创建线程的工厂，默认
 
-                new DefaultThreadFactory(Thread.NORM_PRIORITY, "csdn-pool-"),
+                new DefaultThreadFactory(Thread.NORM_PRIORITY, "thread-pool-"),
 
                 //用来对超出maximumPoolSize的任务的处理策略
                 new ThreadPoolExecutor.AbortPolicy()
