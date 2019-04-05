@@ -101,3 +101,10 @@ api是对外公开的，implementation是内部实现，对外隐藏的
   这里c和b的区别在于，b存放在静态空间，不会在程序运行时被释放，jvm会根据类名找到它（要使用当然是要找到它，最长生命周期的单利😄），它永远占着内存直到程序终止，而c在程序用完它而不会再用到它的时候就会被自动释放，不再占用内存。
 
   static，final修饰一个HashMap用来保存配置特别好😯，引用更古不变，又可以修改这个map对象，只要关联的类被加载一次，运行期间还不被释放，只要运行就永生不灭，最长的生命周期
+
+//绝对路径和相对路径
+  绝对路径 Mac /Users/zhengjingfeng/Desktop/a.txt
+          windows D:\Java\main\test.jav
+  相对路径(https://www.jianshu.com/p/28fb388030fd)
+         同一个目录下
+         不同的目录下  ../text.java   ../src/text.java上一级目录 （相对路径的目录分隔符是用“/”，与绝对路径方向相反）
