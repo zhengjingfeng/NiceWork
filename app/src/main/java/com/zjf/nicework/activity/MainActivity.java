@@ -18,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
@@ -104,6 +105,13 @@ public class MainActivity extends AppCompatActivity {
         starProxy.setTarget(jackSon);
         Star star = (Star) starProxy.CreatProxyObj();
         star.sing("beat it");
+
+        Box<String> box = new Box<>();//泛型类在实例化的时候确定类型
+
+        FanXingDemo fanXingDemo = new FanXingDemo();
+        fanXingDemo.do_run(new FanXingDemo().new Dog());
+        fanXingDemo.do_run(new FanXingDemo().new Human());
+        fanXingDemo.do_run(new FanXingDemo().new Car());
     }
 
     public int diGui(int n) {
@@ -151,6 +159,59 @@ public class MainActivity extends AppCompatActivity {
 
         Object CreatProxyObj() {
             return Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
+        }
+    }
+
+    public class Box<T> {
+        private T item;
+
+        public T getItem() {
+            return item;
+        }
+
+        public void setItem(T item) {
+            this.item = item;
+        }
+    }
+
+    public class FanXingDemo {
+        /**
+         * TODO：这里的泛型T了解一下，在前面为什么要加上<T>，表明T是一个泛型，不加T，T会被当成确定的数据类型，找不到这个特定的类（T），就会报错
+         * @param runner
+         * @param <T>
+         */
+        public <T> void do_run(T runner) {
+            LogUtils.d(TAG,"开始跑");
+            Class<?> meta = runner.getClass();
+            try {
+                Method method = meta.getMethod("run");
+                method.invoke(runner);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+            LogUtils.d(TAG,"结束跑");
+        }
+
+        class Dog {
+            public void run() {
+                LogUtils.d(TAG,"狗，跑");
+            }
+        }
+
+        class Human {
+            public void run() {
+                LogUtils.d(TAG,"人，跑");
+            }
+        }
+
+        class Car {
+            public void run() {
+                LogUtils.d(TAG,"车，跑");
+            }
         }
     }
 }

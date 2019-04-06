@@ -112,3 +112,21 @@ api是对外公开的，implementation是内部实现，对外隐藏的
 
 //观察者模式，你在我这里注册，我就持有你的实例，我就可以调你的方法，类似于接口回调。（注册/反注册/通知）其实很简单！！！
   你订阅一份杂志，杂志公司持有你的实例（你的邮箱），当然可以给你发送新的杂志了，简单的一匹。
+
+//泛型好处
+  编译期类型检查，减少出错的机会，省去类型强转的代码。在编译过程中，正确验证泛型结果后，会将泛型的信息擦除，泛型信息不会进入运行阶段。
+  ArrayList<? extends Animal> list = new ArrayList<Cat>();
+
+      public class Box<T> {
+          private T item;
+
+          public T getItem() {
+              return item;
+          }
+
+          public void setItem(T item) {
+              this.item = item;
+          }
+      }
+
+      Box<String> box = new Box<>();//泛型类在实例化的时候确定类型
