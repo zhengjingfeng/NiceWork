@@ -117,16 +117,21 @@ api是对外公开的，implementation是内部实现，对外隐藏的
   编译期类型检查，减少出错的机会，省去类型强转的代码。在编译过程中，正确验证泛型结果后，会将泛型的信息擦除，泛型信息不会进入运行阶段。
   ArrayList<? extends Animal> list = new ArrayList<Cat>();
 
-      public class Box<T> {
-          private T item;
+          public class Box<T> {
+              private T item;
 
-          public T getItem() {
-              return item;
+              public T getItem() {
+                  return item;
+              }
+
+              public void setItem(T item) {
+                  this.item = item;
+              }
           }
 
-          public void setItem(T item) {
-              this.item = item;
-          }
-      }
+          Box<String> box = new Box<>();//泛型类在实例化的时候确定类型
 
-      Box<String> box = new Box<>();//泛型类在实例化的时候确定类型
+String s1 = new String("s1") ;
+String s2 = new String("s1") ;
+上面创建了几个String对象?
+答案:3个 ,编译期Constant Pool中创建1个"s1",运行期heap中创建2个.（用new创建的每new一次就在堆上创建一个对象，用引号创建的如果在常量池中已有就直接指向，不用创建）
