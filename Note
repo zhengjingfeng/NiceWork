@@ -158,3 +158,5 @@ String s2 = new String("s1") ;
         这时候view的宽度就取决于width，假如不设置width，那么系统就会根据view的内容来自行测量大小。
         layout_height和height是一样的。具体效果，可以写布局文件自己试一下，
         同时建议大家也试一下minWidth maxWidth这些属性，可以更好的帮助我们理解布局文件的原理。
+        
+https://www.jianshu.com/p/6d08c95b7f36
