@@ -9,8 +9,16 @@
 
     <TextView
         android:id="@+id/sample_text"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:width="50dp"
+        android:text="Hello World!"/>
+
+    <TextView
+        android:id="@+id/sample_text_02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:width="50dp"
         android:text="Hello World!"/>
 
     <ImageView
