@@ -177,3 +177,10 @@ LayoutInflater加载布局时的inflate方法的第三个参数attachToRoot
 如果root不为null，attachToRoot为false，表示不将layout布局添加到root布局，若要添加则需要手动addView
 
 https://www.cnblogs.com/whoislcj/p/5714760.html
+
+1.Command+W（Window） 关闭单个窗口
+2.Command+Q（Quit） 关闭应用并结束应用进程
+3.Command+Option+Esc 强制关闭应用
+https://itunes.apple.com/cn/app/magnet/id441258766?mt=12&ign-mpt=uo%3D4
+
+https://www.jianshu.com/p/c90466029b45
