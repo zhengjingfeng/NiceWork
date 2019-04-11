@@ -76,7 +76,7 @@ api是对外公开的，implementation是内部实现，对外隐藏的
   JsonObject 底层是通过LinkedTreeMap保存键值对，需要添加gson jar包，有size（）方法。
   
 //Android资源文件分为两种
-  1，res下资源会被编译，生成编译后的资源问价，和R.java类（资源字典，每个资源有唯一id）
+  1，res下资源会被编译，生成编译后的资源文件，和R.java类（资源字典，每个资源有唯一id）
   2, assets下资源不会被编译，反编译后可以拿到这些资源文件
      FileInputStream in = context.getResources().getAssets().open("a.txt"); 读取文件
      String[] fileList = context.getResources().getAssets().list("dirPath")
@@ -129,7 +129,7 @@ api是对外公开的，implementation是内部实现，对外隐藏的
               }
           }
 
-          Box<String> box = new Box<>();//泛型类在实例化的时候确定类型
+          Box<String> box = new Box<>();//泛型类在实例化的时候确定泛型类型
 
 String s1 = new String("s1") ;
 String s2 = new String("s1") ;
@@ -158,8 +158,22 @@ String s2 = new String("s1") ;
         这时候view的宽度就取决于width，假如不设置width，那么系统就会根据view的内容来自行测量大小。
         layout_height和height是一样的。具体效果，可以写布局文件自己试一下，
         同时建议大家也试一下minWidth maxWidth这些属性，可以更好的帮助我们理解布局文件的原理。
+        
+tip:
+onHiddenChange方法可用来刷洗show和hide方式显示和隐藏起来的fragment
 
-//性能优化
-    app进程 16M 32M 64M
 
-    Android Profiler 拍一张快照，来分心内存中某个类的实例，看生命周期是否一致。
+https://gofans.cn/app/61bd8db6-e98e-4eaf-bba7-2f77f733bc2a
+https://gofans.cn/app/26004a30-1a03-4353-9176-955d67d21609
+
+<merge> 合并融合
+LayoutInflater遇见<merge>标签时,就会跳过<merge>标签并且把<merge>标签的子view添加到<merge>标签的父view中.
+
+//布局填充
+LayoutInflater加载布局时的inflate方法的第三个参数attachToRoot
+
+如果root为null，无论attachToRoot为true或者false，效果都是一样的
+如果root不为null，attachToRoot为true，表示将layout布局添加到root布局中
+如果root不为null，attachToRoot为false，表示不将layout布局添加到root布局，若要添加则需要手动addView
+
+https://www.cnblogs.com/whoislcj/p/5714760.html
