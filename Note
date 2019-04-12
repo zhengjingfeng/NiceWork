@@ -145,7 +145,7 @@ String s2 = new String("s1") ;
 
         layout_width 是父容器容许view占有的宽度；view还有一个width属性是view自身的宽度。
 
-        //摘草
+        //摘抄
         我们在写布局文件的时候，声明控件的时候layout_width和layout_height是控件必须的属性。其实控件还有一个width属性，
         只不过我们一般不需要设置它。虽然我们不常用，但是我们也有必要去了解它。那么这两者之间究竟有什么区别呢，
         我记得原来看过网上的一些说法说layout_width只可以设置成wrap_content和match_parent，
@@ -189,3 +189,8 @@ https://www.cnblogs.com/whoislcj/p/5714760.html//组合控件
 
 常见内存泄漏（L3_02）  工具（Profiler LeakCanary）
    单利 类部类（handler 弱引用）不需要的监听移除 不需要的资源即时释放（bitmap cursor broadcast IO流）
+
+https://blog.csdn.net/ceovip/article/details/88922528
+在Project的gradle.properties文件中，一些配置信息都可以在Module的build.gradle文件中读取到。
+作为application或者module时，AndroidManifest.xml是不一样的
+
