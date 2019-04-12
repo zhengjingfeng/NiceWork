@@ -187,5 +187,5 @@ https://www.cnblogs.com/whoislcj/p/5714760.html//组合控件
 2.Command+Q（Quit） 关闭应用并结束应用进程
 3.Command+Option+Esc 强制关闭应用
 
-内存泄漏
-   单利 类部类（handler）
+常见内存泄漏（L3_02）  工具（Profiler LeakCanary）
+   单利 类部类（handler 弱引用）不需要的监听移除 不需要的资源即时释放（bitmap cursor broadcast IO流）
