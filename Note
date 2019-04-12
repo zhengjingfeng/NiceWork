@@ -192,3 +192,5 @@ https://www.cnblogs.com/whoislcj/p/5714760.html//组合控件
 
 
 https://blog.csdn.net/ceovip/article/details/88922528
+在Project的gradle.properties文件中，一些配置信息都可以在Module的build.gradle文件中读取到。
+作为application或者module时，AndroidManifest.xml是不一样的
