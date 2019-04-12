@@ -145,7 +145,7 @@ String s2 = new String("s1") ;
 
         layout_width 是父容器容许view占有的宽度；view还有一个width属性是view自身的宽度。
 
-        //摘草
+        //摘抄
         我们在写布局文件的时候，声明控件的时候layout_width和layout_height是控件必须的属性。其实控件还有一个width属性，
         只不过我们一般不需要设置它。虽然我们不常用，但是我们也有必要去了解它。那么这两者之间究竟有什么区别呢，
         我记得原来看过网上的一些说法说layout_width只可以设置成wrap_content和match_parent，
