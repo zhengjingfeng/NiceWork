@@ -8,6 +8,8 @@
 
 高阶数据结构 1，树(Tree) 2,集(Set) 3, 映射(Map) 4,图(Graph) 非线性结构
 
+1个int占4个字节，一个字节占8位，byte的取之范围-127～127，因为第八位为符号为。1KB = 1024B 1B = 8bit
+
 //git init  把一个文件夹变成git本地仓库
 //git status
 // git add(文件名) 把文件修改添加到暂存区
@@ -183,14 +185,22 @@ if (root != null && attachToRoot) {
 
 https://www.cnblogs.com/whoislcj/p/5714760.html//组合控件
 
-1.Command+W（Window） 关闭单个窗口
-2.Command+Q（Quit） 关闭应用并结束应用进程
-3.Command+Option+Esc 强制关闭应用
-
-常见内存泄漏（L3_02）  工具（Profiler LeakCanary）
-   单利 类部类（handler 弱引用）不需要的监听移除 不需要的资源即时释放（bitmap cursor broadcast IO流）
-
 https://blog.csdn.net/ceovip/article/details/88922528
 在Project的gradle.properties文件中，一些配置信息都可以在Module的build.gradle文件中读取到。
 作为application或者module时，AndroidManifest.xml是不一样的
 
+1.Command+W（Window） 关闭单个窗口
+2.Command+Q（Quit） 关闭应用并结束应用进程
+3.Command+Option+Esc 强制关闭应用
+
+性能优化：常见内存泄漏（L3_02）  工具（Profiler LeakCanary hint）
+   单利 类部类（handler 弱引用）不需要的监听移除 不需要的资源即时释放（bitmap cursor broadcast IO流）
+
+渲染优化：卡顿是怎么造成的
+    卡主线程（卡UI线程）  60fps 16ms（逻辑 cpu gpu） 垂直刷型 GPU OpenGL
+    1.某一个函数执行事件比较长，卡主线程；2.频发的GC操作造成主线程卡住
+
+    GPU优化：UI渲染优化（cpu通过计算，把要渲染的模型和纹理信息传递给gpu进行栅格化） 避免过度绘制 屏幕上的某个像素点在同一帧的事件内被绘制了多次。优化去掉多余的背景，自定义的控件裁剪，过度绘制（蓝色，绿色，粉色，红色）
+    CPU优化：<ViewStub> 避免视图嵌套过深
+
+Bitmap优化：

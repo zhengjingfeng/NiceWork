@@ -55,6 +55,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //将主题添加的背景去掉
+        getWindow().setBackgroundDrawable(null);
+
         initView();
 
         initData();
@@ -74,19 +77,28 @@ public class MainActivity extends AppCompatActivity {
         LogUtils.d(TAG, "result:" + result);
         try {
             //输入流：文件读到内存 输出流：内存读到文件
-            File file = new File(Environment.getExternalStoragePublicDirectory("Pictures"), "cs.jpg");
+            File file = new File(Environment.getExternalStoragePublicDirectory("Pictures"), "lufei.png");
             InputStream in = new FileInputStream(file);
 
-            File newFile = new File(getFilesDir(), "csgo.jpg");
+            File newFile = new File(getFilesDir(), "haizeiwang.png");
+            if (!newFile.exists()) {
+                newFile.createNewFile();
+            }
             OutputStream out = new FileOutputStream(newFile);
             byte[] bytes = new byte[1024];
 
             int len;
+
+            //从File read进内存，从内存 write到File
             while ((len = in.read(bytes)) != -1) {
                 out.write(bytes, 0, len);
             }
 
             InputStream in2 = new FileInputStream(newFile);
+
+            //Options静态内部类
+            BitmapFactory.Options options = new BitmapFactory.Options();
+
             Bitmap bitmap = BitmapFactory.decodeStream(in2);
             iv.setImageBitmap(bitmap);
 
@@ -112,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         fanXingDemo.do_run(new FanXingDemo().new Dog());
         fanXingDemo.do_run(new FanXingDemo().new Human());
         fanXingDemo.do_run(new FanXingDemo().new Car());
+
     }
 
     public int diGui(int n) {
