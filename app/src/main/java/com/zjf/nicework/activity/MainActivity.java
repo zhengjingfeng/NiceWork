@@ -29,9 +29,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author zhengjingfeng
@@ -47,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageView iv;
 
     private Stack<Integer> stack = new Stack<>();
-
-    private Lock lock;
-    Condition condition;
 
     /**
      * Collections是一个集合工具类
@@ -68,30 +62,16 @@ public class MainActivity extends AppCompatActivity {
 
         initData();
 
-        lock = new ReentrantLock();
-
-        condition = lock.newCondition();
-
-//        try {
-//            condition.await();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        condition.signal();
-
     }
 
     private void initView() {
-        try {
-            lock.lock();
-            tv = findViewById(R.id.sample_text);
-            iv = findViewById(R.id.iv_pic);
-            int sum = JniUtil.getInstance().sum(2, 3);
-            String realSum = sum + "";
-            tv.setText(realSum);
-        } finally {
-            lock.unlock();
-        }
+
+        tv = findViewById(R.id.sample_text);
+        iv = findViewById(R.id.iv_pic);
+        int sum = JniUtil.getInstance().sum(2, 3);
+        String realSum = sum + "";
+        tv.setText(realSum);
+
     }
 
     private void initData() {

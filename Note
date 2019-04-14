@@ -248,3 +248,26 @@ AS自带优化工具
         //mCallback = callback;
         //mAsynchronous = async;
     }
+
+//Lock锁的使用
+lock = new ReentrantLock();
+
+condition = lock.newCondition();
+
+	try {
+        	lock.lock();
+		} finally {
+  			lock.unlock();
+		}
+	condition.await();
+	condition.signal();
+
+安装包性能优化：
+    常规压缩：
+    图片：webp：谷歌提倡使用，保存图片比较小，webp的无损压缩比png小45%，缺点：加载速度比png慢很多
+    lint工具：1，检查我用的布局 删除  2，未使用的资源（图片）删除 3，String,xml没有用到的字符
+    7zip压缩：
+    proguard 混淆 让apk变小：1，删掉注释和不实用的代码；2，Java文件名字和方法名改短（a.java）
+
+热修复：
+    AndFix(底层二进制入手) Tinker（类加载机制入手）
