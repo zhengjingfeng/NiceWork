@@ -269,5 +269,17 @@ condition = lock.newCondition();
     7zip压缩：
     proguard 混淆 让apk变小：1，删掉注释和不实用的代码；2，Java文件名字和方法名改短（a.java）
 
-热修复：
+热修复：Android是如何加载classes.dex，启动程序的？
     AndFix(底层二进制入手) Tinker（类加载机制入手）
+    1,PathClassLoader
+        用来记载应用程序的dex
+    2,PathClassLoader
+        可以加载某个指定的dex（限制：必须是应用程序目录下的,包名目录下）
+
+    BaseDexClassLoad{
+        Class<?> findClass(String className);
+    }
+
+    BaseDexClassLoader->DexPathList pathList 字段是一个类->  Element[] DexElements 字段是我们需要的。
+
+//https://developer.android.com/studio/build/multidex

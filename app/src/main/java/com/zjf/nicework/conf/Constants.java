@@ -30,5 +30,6 @@ public class Constants {
 
     public static final class STRING {
         public static String TOKEN = "";
+        public static final String DEX_DIR = "odex";
     }
 }
