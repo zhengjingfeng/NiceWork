@@ -29,6 +29,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 import java.util.TreeMap;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author zhengjingfeng
@@ -44,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
     private ImageView iv;
 
     private Stack<Integer> stack = new Stack<>();
+
+    private Lock lock;
+    Condition condition;
 
     /**
      * Collections是一个集合工具类
@@ -62,14 +68,30 @@ public class MainActivity extends AppCompatActivity {
 
         initData();
 
+        lock = new ReentrantLock();
+
+        condition = lock.newCondition();
+
+//        try {
+//            condition.await();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//        condition.signal();
+
     }
 
     private void initView() {
-        tv = findViewById(R.id.sample_text);
-        iv = findViewById(R.id.iv_pic);
-        int sum = JniUtil.getInstance().sum(2, 3);
-        String realSum = sum + "";
-        tv.setText(realSum);
+        try {
+            lock.lock();
+            tv = findViewById(R.id.sample_text);
+            iv = findViewById(R.id.iv_pic);
+            int sum = JniUtil.getInstance().sum(2, 3);
+            String realSum = sum + "";
+            tv.setText(realSum);
+        } finally {
+            lock.unlock();
+        }
     }
 
     private void initData() {
@@ -100,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
             BitmapFactory.Options options = new BitmapFactory.Options();
 
             Bitmap bitmap = BitmapFactory.decodeStream(in2);
+
             iv.setImageBitmap(bitmap);
 
             in.close();
@@ -190,11 +213,12 @@ public class MainActivity extends AppCompatActivity {
     public class FanXingDemo {
         /**
          * TODO：这里的泛型T了解一下，在前面为什么要加上<T>，表明T是一个泛型，不加T，T会被当成确定的数据类型，找不到这个特定的类（T），就会报错
+         *
          * @param runner
          * @param <T>
          */
         public <T> void do_run(T runner) {
-            LogUtils.d(TAG,"开始跑");
+            LogUtils.d(TAG, "开始跑");
             Class<?> meta = runner.getClass();
             try {
                 Method method = meta.getMethod("run");
@@ -206,24 +230,24 @@ public class MainActivity extends AppCompatActivity {
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
-            LogUtils.d(TAG,"结束跑");
+            LogUtils.d(TAG, "结束跑");
         }
 
         class Dog {
             public void run() {
-                LogUtils.d(TAG,"狗，跑");
+                LogUtils.d(TAG, "狗，跑");
             }
         }
 
         class Human {
             public void run() {
-                LogUtils.d(TAG,"人，跑");
+                LogUtils.d(TAG, "人，跑");
             }
         }
 
         class Car {
             public void run() {
-                LogUtils.d(TAG,"车，跑");
+                LogUtils.d(TAG, "车，跑");
             }
         }
     }

@@ -8,7 +8,7 @@
 
 高阶数据结构 1，树(Tree) 2,集(Set) 3, 映射(Map) 4,图(Graph) 非线性结构
 
-1个int占4个字节，一个字节占8位，byte的取之范围-127～127，因为第八位为符号为。1KB = 1024B 1B = 8bit
+1个int占4个字节，一个byte占一个字节空间，一个字节占8位，byte的取之范围-128～127，因为第八位为符号为。1KB = 1024B 1B = 8bit
 
 //git init  把一个文件夹变成git本地仓库
 //git status
@@ -203,4 +203,48 @@ https://blog.csdn.net/ceovip/article/details/88922528
     GPU优化：UI渲染优化（cpu通过计算，把要渲染的模型和纹理信息传递给gpu进行栅格化） 避免过度绘制 屏幕上的某个像素点在同一帧的事件内被绘制了多次。优化去掉多余的背景，自定义的控件裁剪，过度绘制（蓝色，绿色，粉色，红色）
     CPU优化：<ViewStub> 避免视图嵌套过深
 
-Bitmap优化：
+Bitmap优化：（bitmap图片在内存中的存在形式）
+    图片存在的几种形式（1.File 2.流的形式bytes 3.bitmap形式——内存）
+
+    一个像素点包含四个信息 argb
+
+AS自带优化工具
+    Android profiler（分析）  inspect code  layout inspector（检查 巡视）
+
+    ActivityThread是Android程序的入口。里面有main方法 {
+            public static void main(String[] args) {
+                Looper.prepareMainLooper();//主线程自少有一个Looper对象
+                //......
+                Looper.loop();
+            }
+        }
+
+    public static prepareMainLooper() {
+        prepare;
+    }
+
+    ThreadLocal:线程隔离用的；
+
+    public static void prepare(){
+        sThreadLocal.set(new Looper());
+    }
+
+    public static Looper myLooper() {
+        return sThreadLoacl.get();
+    }
+
+    public static loop() {
+        Looper me = myLooper();
+    }
+
+    public Hanlder() {
+        this.(null,false);
+    }
+
+    public Handler(CallBack call, ) {
+        //...
+        mLooper = Looper.myLooper();
+        mQueue = mLooper.mQueue;
+        //mCallback = callback;
+        //mAsynchronous = async;
+    }
