@@ -293,22 +293,39 @@ condition = lock.newCondition();
 安装包性能优化：
     常规压缩：
     图片：webp：谷歌提倡使用，保存图片比较小，webp的无损压缩比png小45%，缺点：加载速度比png慢很多
-    lint工具：1，检查我用的布局 删除  2，未使用的资源（图片）删除 3，String,xml没有用到的字符
+    lint工具：1，检查未使用的布局 删除  2，未使用的资源（图片）删除 3，String.xml没有用到的字符
     7zip压缩：
     proguard 混淆 让apk变小：1，删掉注释和不实用的代码；2，Java文件名字和方法名改短（a.java）
 
 热修复：Android是如何加载classes.dex，启动程序的？
     AndFix(底层二进制入手) Tinker（类加载机制入手）
     1,PathClassLoader
-        用来记载应用程序的dex
+        用来加载应用程序的dex
     2,PathClassLoader
         可以加载某个指定的dex（限制：必须是应用程序目录下的,包名目录下）
 
     BaseDexClassLoad{
-        Class<?> findClass(String className);
+        Class<?> findClass(String className){
+		Class c = pathList.findClass(name, suppressedExceptions);//DexPathList.findClass()
+	}
     }
+    
+    //DexPathList类
+    public Class<?> findClass(String name, List<Throwable> suppressed) {
+485        for (Element element : dexElements) {//遍历dexElements，热修复就是把新的dex加入到dexElements集合里面。
+486            Class<?> clazz = element.findClass(name, definingContext, suppressed);
+487            if (clazz != null) {
+488                return clazz;//找到了就返回，热修复把包含修改后的class的dex加入到dexElements集合里面最前面就可以，应该找到那个正确的claZZ就返回。。
+489            }
+490        }
+491
+492        if (dexElementsSuppressedExceptions != null) {
+493            suppressed.addAll(Arrays.asList(dexElementsSuppressedExceptions));
+494        }
+495        return null;
+496    }
 
-    BaseDexClassLoader->DexPathList pathList 字段是一个类->  Element[] DexElements 字段是我们需要的。
+    BaseDexClassLoader->DexPathList pathList 字段->  Element[] DexElements 字段是我们需要的。
 
 //https://developer.android.com/studio/build/multidex
 //http://androidxref.com/
