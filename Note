@@ -325,9 +325,7 @@ condition = lock.newCondition();
 496    }
 
     BaseDexClassLoader->DexPathList pathList 字段->  Element[] DexElements 字段是我们需要的。
-    
 
-//https://developer.android.com/studio/build/multidex
 //http://androidxref.com/
 
 动脑学院 腾讯学院
@@ -335,5 +333,11 @@ condition = lock.newCondition();
 
 short索引dex文件中的方法数，受到short取值范围的影响，方法不能超过65535。
 
-service：
+数据结构与算法：
+    数据结构：集合结构，线性结构，树形结构，图形结构
+
+设计模式：说白了就是套路
+    简单工厂：场景：创建对象，降低客服端与模块之间的耦合（最少知识原则）
+    工厂方法模式：把具体的实现延迟到子类
+
 
