@@ -149,16 +149,15 @@ String s2 = new String("s1") ;
 
         //摘抄
         我们在写布局文件的时候，声明控件的时候layout_width和layout_height是控件必须的属性。其实控件还有一个width属性，
-        只不过我们一般不需要设置它。虽然我们不常用，但是我们也有必要去了解它。那么这两者之间究竟有什么区别呢，
-        我记得原来看过网上的一些说法说layout_width只可以设置成wrap_content和match_parent，
-        而width的单位只能设置成具体的 px。我想说还能错的再离谱一点吗，首先layout_width也支持具体数值，
-        width也支持各种单位dp、px、甚至sp。首先我们应该知道一个控件的大小并不是由它自己本身来决定的，
-        而是由父布局和它自身一起来决定的。而layout_width就是父布局允许view所占的宽度，而width是view的自身宽度。
+        只不过我们一般不需要设置它。虽然我们不常用，但是我们也有必要去了解它。
+	首先我们应该知道一个控件的大小并不是由它自己本身来决定的，而是由父布局和它自身一起来决定的。
+	layout_width就是父布局允许view所占的宽度，而width是view的自身宽度。
         在layout_width和width都设置为具体数值的时候，width其实就无效了，这也不难理解，父布局已经给你分配了具体的空间，
-        不论view怎么设置width，view的宽度也只能是layout_width.那么什么情况下，width也会起作用呢。
-        当我们把layout_width设置成wrap_content的时候，父布局的意思是包裹view，view有多大就分配多大的空间给它，
+        不论view怎么设置width，view的宽度也只能是layout_width.
+	那么什么情况下，width也会起作用呢。
+	当我们把layout_width设置成wrap_content的时候，父布局的意思是包裹view，view有多大就分配多大的空间给它，
         这时候view的宽度就取决于width，假如不设置width，那么系统就会根据view的内容来自行测量大小。
-        layout_height和height是一样的。具体效果，可以写布局文件自己试一下，
+        layout_height和height是一样的。
         同时建议大家也试一下minWidth maxWidth这些属性，可以更好的帮助我们理解布局文件的原理。
         
 tip:
@@ -329,5 +328,7 @@ condition = lock.newCondition();
 
 //https://developer.android.com/studio/build/multidex
 //http://androidxref.com/
+
+动脑学院 腾讯学院
 
 service：
