@@ -194,13 +194,15 @@ https://blog.csdn.net/ceovip/article/details/88922528
 3.Command+Option+Esc 强制关闭应用
 
 性能优化：常见内存泄漏（L3_02）  工具（Profiler LeakCanary hint）
-   单利 类部类（handler 弱引用）不需要的监听移除 不需要的资源即时释放（bitmap cursor broadcast IO流）
+   单利 内部类（handler 弱引用）不需要的监听移除 不需要的资源即时释放（bitmap cursor broadcast IO流）
 
 渲染优化：卡顿是怎么造成的
-    卡主线程（卡UI线程）  60fps 16ms（逻辑 cpu gpu） 垂直刷型 GPU OpenGL
-    1.某一个函数执行事件比较长，卡主线程；2.频发的GC操作造成主线程卡住
+    卡主线程（卡UI线程）  60fps 16ms完成（逻辑 cpu gpu）  垂直刷型 GPU OpenGL
+    1.某一个函数执行时间比较长，卡主线程；2.频发的GC操作造成主线程卡住
 
-    GPU优化：UI渲染优化（cpu通过计算，把要渲染的模型和纹理信息传递给gpu进行栅格化） 避免过度绘制 屏幕上的某个像素点在同一帧的事件内被绘制了多次。优化去掉多余的背景，自定义的控件裁剪，过度绘制（蓝色，绿色，粉色，红色）
+    GPU优化：UI渲染优化（cpu通过计算，把要渲染的模型和纹理信息传递给gpu进行栅格化） 避免过度绘制 屏幕上的某个像素点在同一帧的内被绘制了多次。
+    	    优化：去掉多余的背景，自定义的控件裁剪。
+	    过度绘制程度（蓝色，绿色，粉色，红色）
     CPU优化：<ViewStub> 避免视图嵌套过深
 
 Bitmap优化：（bitmap图片在内存中的存在形式）
@@ -209,7 +211,7 @@ Bitmap优化：（bitmap图片在内存中的存在形式）
     一个像素点包含四个信息 argb
 
 AS自带优化工具
-    Android profiler（分析）  inspect code  layout inspector（检查 巡视）
+    Android profiler（分析）   inspect code   layout inspector（检查 巡视）
 
     ActivityThread是Android程序的入口。里面有main方法 {
             public static void main(String[] args) {
@@ -235,6 +237,10 @@ AS自带优化工具
 
     public static loop() {
         Looper me = myLooper();
+	//...
+	final MessageQueue queue = me.mQueue;
+	//...
+	for(;;){};
     }
 
     public Hanlder() {
@@ -243,10 +249,30 @@ AS自带优化工具
 
     public Handler(CallBack call, ) {
         //...
-        mLooper = Looper.myLooper();
+        mLooper = Looper.myLooper(); //从ThreadLocal中取出looper
         mQueue = mLooper.mQueue;
         //mCallback = callback;
         //mAsynchronous = async;
+    }
+    
+    public final boolean sendMessage(Message msg) 
+    	//...
+    }
+    
+    sendMessage->sendMessageDelayed -> sendMessageAtTime
+    
+    public boolean sendMessageAtTime(Message msg, long upTimeMillis) {
+    	Message queue = mQueue;
+	if(queue == null) {
+		//...
+		return false;
+	}
+	returen enqueueMesaage(queue, msg, upTimeMillis);
+    }
+    
+    private boolean enqueueMesaage(MessageQueue queue, Message msg, long upTimeMillis) {
+    	msg.target = this;//this 是Handler
+	return queue.enqueueMessage(queue, upTimeMillis);
     }
 
 //Lock锁的使用
