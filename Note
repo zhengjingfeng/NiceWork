@@ -240,7 +240,9 @@ AS自带优化工具
 	//...
 	final MessageQueue queue = me.mQueue;
 	//...
-	for(;;){};
+	for(;;){
+		Message msg = queue.next();//next() 方法返回一个msg
+	}
     }
 
     public Hanlder() {
