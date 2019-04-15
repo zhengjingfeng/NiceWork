@@ -331,4 +331,7 @@ condition = lock.newCondition();
 
 动脑学院 腾讯学院
 
+short索引dex文件中的方法数，受到short取值范围的影响，方法不能超过65535。
+
 service：
+
