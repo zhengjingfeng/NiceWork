@@ -352,4 +352,6 @@ short索引dex文件中的方法数，受到short取值范围的影响，方法�
     简单工厂：场景：创建对象，降低客服端与模块之间的耦合（最少知识原则）
     工厂方法模式：把具体的实现延迟到子类
    
+https://github.com/antoniolg/Kotlin-for-Android-Developers
+《权力游戏》、《破产姐妹》、《生活大爆炸》
 
