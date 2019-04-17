@@ -326,8 +326,6 @@ condition = lock.newCondition();
 
     BaseDexClassLoader->DexPathList pathList 字段->  Element[] DexElements 字段是我们需要的。
 
-//http://androidxref.com/
-
 动脑学院 腾讯学院
 趋势：kotlin rn 车载 VR Ai；对基础内容深入理解，尽快向高级水平靠近和达到，第二步再找准定位和细分领域。这个英文水平是个什么情况？？？
 
@@ -342,16 +340,25 @@ short索引dex文件中的方法数，受到short取值范围的影响，方法�
 	Node<E> next;
 	
 	Node(Node<E> prev,E element,Node<E> next) {
-		this.item = elements;
-		this.prev = prev;
-		this.next = next;
-	}
+		    this.item = elements;
+		    this.prev = prev;
+		    this.next = next;
+	    }
     }
+
+    ArrayList LinkedList Vector->stack，vector和stack是线程安全的，queue
+    集合里的迭代器 很简单，看一下ArrayList 的 Iterator，很简单
+
+    HashMap(散列链表)：    transient Node<K,V>[] table;
+
+    键值对的 index 有key 的hash值和键值对数组的长度两个因素决定
+
+    int index = hash(key)&(tab.length() - 1);//tab 是键值对数组
+
+    lru算法：LinkedHashMap
+
+    树；比如window的文件系统。子节点只有一个父节点
 
 设计模式：说白了就是套路
     简单工厂：场景：创建对象，降低客服端与模块之间的耦合（最少知识原则）
     工厂方法模式：把具体的实现延迟到子类
-   
-https://github.com/antoniolg/Kotlin-for-Android-Developers
-https://blog.csdn.net/weixin_43207813/article/details/85222461
-
