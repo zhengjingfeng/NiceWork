@@ -349,7 +349,7 @@ short索引dex文件中的方法数，受到short取值范围的影响，方法�
     ArrayList LinkedList Vector->stack，vector和stack是线程安全的，queue
     集合里的迭代器 很简单，看一下ArrayList 的 Iterator，很简单
 
-    HashMap(散列链表)：    transient Node<K,V>[] table;
+    HashMap(散列链表)：    transient Node<K,V>[] table; 散列链表
 
     键值对的 index 有key 的hash值和键值对数组的长度两个因素决定
 
@@ -358,6 +358,8 @@ short索引dex文件中的方法数，受到short取值范围的影响，方法�
     lru算法：LinkedHashMap
 
     树；比如window的文件系统。子节点只有一个父节点
+
+    二叉树：二分查找法
 
 设计模式：说白了就是套路
     简单工厂：场景：创建对象，降低客服端与模块之间的耦合（最少知识原则）
