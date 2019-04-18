@@ -371,4 +371,15 @@ short索引dex文件中的方法数，受到short取值范围的影响，方法�
 设计模式：说白了就是套路
     简单工厂：场景：创建对象，降低客服端与模块之间的耦合（最少知识原则）
     工厂方法模式：把具体的实现延迟到子类
-    抽象工厂模式：
+    抽象工厂模式：每个工厂只生产一种产品，产品族
+    原型模式：
+
+
+APP的启动流程：启动图标->Main(ActivityThread)->attahc(false)->IActivityManager mgr = ActivityManager.getService()/---
+                final IBinder b = ServiceManager.getService(Context.ACTIVITY_SERVICE);
+                                    final IActivityManager am = IActivityManager.Stub.asInterface(b);
+                                    return am;---/
+             ->mgr.attachApplication(mAppThread, startSeq);
+
+开发的时候将所有的单利放到一个HashMap里面管理
+
