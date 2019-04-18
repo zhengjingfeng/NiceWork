@@ -361,6 +361,14 @@ short索引dex文件中的方法数，受到short取值范围的影响，方法�
 
     二叉树：二分查找法，最多两个子节点
 
+            try {
+                Class.forName("").newInstance();//说明forName()是一个静态方法,newInsTance()是一个native方法
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            //作业：用反射的方式写一个简单工厂模式
+
 设计模式：说白了就是套路
     简单工厂：场景：创建对象，降低客服端与模块之间的耦合（最少知识原则）
     工厂方法模式：把具体的实现延迟到子类
+    抽象工厂模式：

@@ -12,9 +12,10 @@ public class JniUtil {
     }
 
     private JniUtil() {
+
     }
 
-    private static JniUtil instance = null;
+    private static JniUtil instance;
 
     public static JniUtil getInstance() {
 
