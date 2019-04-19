@@ -384,3 +384,4 @@ APP的启动流程：启动图标->Main(ActivityThread)->attahc(false)->IActivit
 开发的时候将所有的单利放到一个HashMap里面管理
 
 https://image.baidu.com/search/detail?ct=503316480&z=0&ipn=d&word=android%20%E5%8D%B1%E9%99%A9%E6%9D%83%E9%99%90%E5%88%97%E8%A1%A8&step_word=&hs=0&pn=8&spn=0&di=54560&pi=0&rn=1&tn=baiduimagedetail&is=0%2C0&istype=0&ie=utf-8&oe=utf-8&in=&cl=2&lm=-1&st=undefined&cs=1048891316%2C911500090&os=2103663701%2C1084368302&simid=0%2C0&adpicid=0&lpn=0&ln=500&fr=&fmq=1555663834885_R&fm=&ic=undefined&s=undefined&hd=undefined&latest=undefined&copyright=undefined&se=&sme=&tab=0&width=undefined&height=undefined&face=undefined&ist=&jit=&cg=&bdtype=0&oriquery=&objurl=http%3A%2F%2Fimg.mukewang.com%2F5b740ad80001a9a603690778.jpg&fromurl=ippr_z2C%24qAzdH3FAzdH3F4_z%26e3Bt455v_z%26e3Bv54AzdH3Fw6ptvsjAzdH3Fmbd9l&gsm=0&rpstart=0&rpnum=0&islist=&querylist=&force=undefined
+https://www.jianshu.com/p/dbe4d37731e6
