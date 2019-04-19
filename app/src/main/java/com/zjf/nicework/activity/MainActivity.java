@@ -1,9 +1,12 @@
 package com.zjf.nicework.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +39,7 @@ import java.util.TreeMap;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    private static final int REQUEST_PERMISSION_CODE = 100;
 
     private List<String> list = new ArrayList<>();
     private Set<Integer> set = new HashSet<>();
@@ -55,13 +59,31 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String[] periMissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
+            checkPermission(periMissions);
+        }
+
         //将主题添加的背景去掉
         getWindow().setBackgroundDrawable(null);
 
         initView();
 
-        initData();
+    }
 
+    private void checkPermission(String[] periMissions) {
+        requestPermissions(periMissions,REQUEST_PERMISSION_CODE);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_PERMISSION_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                initData();
+            }
+        }
     }
 
     private void initView() {
@@ -71,12 +93,12 @@ public class MainActivity extends AppCompatActivity {
         int sum = JniUtil.getInstance().sum(2, 3);
         String realSum = sum + "";
         tv.setText(realSum);
-
+        int result = diGui(4);
+        LogUtils.d(TAG, "result:" + result);
     }
 
     private void initData() {
-        int result = diGui(4);
-        LogUtils.d(TAG, "result:" + result);
+
         try {
             //输入流：文件读到内存 输出流：内存读到文件
             File file = new File(Environment.getExternalStoragePublicDirectory("Pictures"), "lufei.png");
