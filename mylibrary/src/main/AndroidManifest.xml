@@ -3,7 +3,7 @@
     package="com.zjf.mylibrary">
 
     <application>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MyLibraryMainActivity"></activity>
     </application>
 
 </manifest>

@@ -7,7 +7,6 @@ if (isNeedMyLibraryModel.toBoolean()) {
 android {
     compileSdkVersion 28
 
-
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 28
@@ -20,6 +19,11 @@ android {
             applicationId "com.zjf.mylibrary"
         }
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
 
     buildTypes {
@@ -37,7 +41,7 @@ dependencies {
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["runner"]
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
-    implementation project(':commonlib')
+//    implementation project(':commonlib')
 
     //arouter阿里路由
     implementation rootProject.ext.dependencies["arouter-api"]

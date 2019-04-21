@@ -12,9 +12,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.zjf.nicework.R;
 import com.zjf.nicework.utils.JniUtil;
 import com.zjf.nicework.utils.LogUtils;
@@ -41,7 +45,8 @@ import java.util.TreeMap;
 /**
  * @author zhengjingfeng
  */
-public class MainActivity extends AppCompatActivity {
+@Route(path = "/app/main")
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
     private static final int REQUEST_PERMISSION_CODE = 100;
@@ -51,6 +56,8 @@ public class MainActivity extends AppCompatActivity {
     private Map<Integer, String> map = new TreeMap<>();
     private TextView tv;
     private ImageView ivPicture;
+
+    private Button btn;
 
     private Stack<Integer> stack = new Stack<>();
 
@@ -63,6 +70,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ARouter.getInstance().inject(this);
 
         String[] periMissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
@@ -94,7 +103,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
+        btn = findViewById(R.id.btn_lufei);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/mylibrary/main")
+                        .withLong("key1", 666L)
+                        .navigation();
+            }
+        });
         tv = findViewById(R.id.sample_text);
         ivPicture = findViewById(R.id.iv_pic);
         int sum = JniUtil.getInstance().sum(2, 3);
@@ -209,6 +226,16 @@ public class MainActivity extends AppCompatActivity {
             return 1;
         } else {
             return n * diGui(n - 1);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_lufei:
+                ARouter.getInstance().build("/mylibrary/main").navigation();
+                break;
+                default:
         }
     }
 

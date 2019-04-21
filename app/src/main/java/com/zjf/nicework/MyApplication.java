@@ -18,6 +18,8 @@ public class MyApplication extends Application {
         super.onCreate();
 
         initLeakCanary();
+
+        initARouter();
     }
 
     public void initLeakCanary() {
