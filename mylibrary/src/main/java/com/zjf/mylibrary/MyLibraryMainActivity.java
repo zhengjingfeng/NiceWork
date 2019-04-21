@@ -26,6 +26,7 @@ public class MyLibraryMainActivity extends AppCompatActivity {
         ARouter.getInstance().inject(this);
 
         initView();
+
     }
 
     private void initView() {

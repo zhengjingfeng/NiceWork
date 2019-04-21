@@ -17,8 +17,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.zjf.mylibrary.MyLibraryService;
 import com.zjf.nicework.R;
 import com.zjf.nicework.utils.JniUtil;
 import com.zjf.nicework.utils.LogUtils;
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * Collections是一个集合工具类
      */
     private List synList = Collections.synchronizedList(new ArrayList<String>());
+
+    @Autowired(name = "/mylibrary/MyLibraryService")
+    public MyLibraryService myLibraryService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,6 +124,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv.setText(realSum);
         int result = diGui(4);
         LogUtils.d(TAG, "result:" + result);
+
+        LogUtils.d(TAG, myLibraryService.callMe());
 
     }
 

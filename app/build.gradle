@@ -55,4 +55,7 @@ dependencies {
     if (isNeedMyLibraryModel.toBoolean()) {
         implementation project(':mylibrary')
     }
+
+    implementation project(':commonlib')
+
 }

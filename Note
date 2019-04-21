@@ -317,19 +317,19 @@ condition = lock.newCondition();
     }
     
     //DexPathList类
-    public Class<?> findClass(String name, List<Throwable> suppressed) {
-485        for (Element element : dexElements) {//遍历dexElements，热修复就是把新的dex加入到dexElements集合里面。
-486            Class<?> clazz = element.findClass(name, definingContext, suppressed);
-487            if (clazz != null) {
-488                return clazz;//找到了就返回，热修复把包含修改后的class的dex加入到dexElements集合里面最前面就可以，应该找到那个正确的claZZ就返回。。
-489            }
-490        }
-491
-492        if (dexElementsSuppressedExceptions != null) {
-493            suppressed.addAll(Arrays.asList(dexElementsSuppressedExceptions));
-494        }
-495        return null;
-496    }
+      ublic Class<?> findClass(String name, List<Throwable> suppressed) {
+         for (Element element : dexElements) {//遍历dexElements，热修复就是把新的dex加入到dexElements集合里面。
+             Class<?> clazz = element.findClass(name, definingContext, suppressed);
+             if (clazz != null) {
+                 return clazz;//找到了就返回，热修复把包含修改后的class的dex加入到dexElements集合里面最前面就可以，应该找到那个正确的claZZ就返回。。
+             }
+         }
+
+         if (dexElementsSuppressedExceptions != null) {
+             suppressed.addAll(Arrays.asList(dexElementsSuppressedExceptions));
+         }
+         return null;
+
 
     BaseDexClassLoader->DexPathList pathList 字段->  Element[] DexElements 字段是我们需要的。
 
