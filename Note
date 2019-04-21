@@ -40,6 +40,11 @@ git push -u origin master
 // git checkout(剪出分支)
 //fork/clone(add commit push)
 
+清空git缓存
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
+
 //网络请求开始
 http 请求3位的返回码中 3开头是重定向，4开头代表客服端错误（404页面：file not found），5开头代表服务器错误，当然200是正常响应
 cookie是客服端保持状态的方案 session是在服务端保持状态的方案
