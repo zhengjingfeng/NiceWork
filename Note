@@ -386,7 +386,7 @@ APP的启动流程：启动图标->Main(ActivityThread)->attahc(false)->IActivit
 
 动态权限  get //https://droidyue.com/blog/2016/01/17/understanding-marshmallow-runtime-permission/
 
-@Override
+    @Override
     public void run() {
         if (target != null) {
             target.run();
@@ -431,3 +431,16 @@ Android 动画
 
             ObjectAnimator才是最常用的类，可以对任何对象的任何属性进行操作，来实现真的动画。
 
+
+CompileSdkVersion和BuildToolVersion
+1,CompileSdkVersion是你SDK的版本号，也就是API Level，例如API-19、API-20、API-21等等。
+2,buildeToolVersion是你构建工具的版本，其中包括了打包工具aapt、dx等等。这个工具的目录位于..your_sdk_path/build-tools/XX.XX.XX
+3,可以用高版本的build-tool去构建一个低版本的sdk工程，例如build-tool的版本为28，去构建一个sdk版本为27的
+
+Android 组件化
+    以前的分包变成了现在的模块
+    Arouter:（A->B ）
+        注册 B界面将类的信息通过key_value的形式注册到Arouter中
+        查询 通过key获取目标界面信息
+        关联
+        跳转
