@@ -5,7 +5,6 @@ android {
 
     defaultConfig {
         applicationId "com.zjf.nicework"
-        //            minSdkVersion    : 23,
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -52,4 +51,8 @@ dependencies {
     //arouter阿里路由
     implementation rootProject.ext.dependencies["arouter-api"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
+
+    if (isNeedMyLibraryModel.toBoolean()) {
+        implementation project(':mylibrary')
+    }
 }
