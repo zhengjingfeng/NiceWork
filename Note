@@ -212,6 +212,8 @@ Bitmap优化：（bitmap图片在内存中的存在形式）
 AS自带优化工具
     Android profiler（分析）   inspect code   layout inspector（检查 巡视）
 
+
+Handler机制：
     ActivityThread是Android程序的入口。里面有main方法 {
             public static void main(String[] args) {
                 Looper.prepareMainLooper();//主线程自少有一个Looper对象
@@ -367,8 +369,6 @@ short索引dex文件中的方法数，受到short取值范围的影响，方法�
                 e.printStackTrace();
             }
 
-排序算法：
-
 
 设计模式：说白了就是套路
     简单工厂：场景：创建对象，降低客服端与模块之间的耦合（最少知识原则）
@@ -384,9 +384,7 @@ APP的启动流程：启动图标->Main(ActivityThread)->attahc(false)->IActivit
 
 开发的时候将所有的单利放到一个HashMap里面管理
 
-https://www.jianshu.com/p/dbe4d37731e6
-https://droidyue.com/blog/2016/01/17/understanding-marshmallow-runtime-permission/
-动态权限  get
+动态权限  get //https://droidyue.com/blog/2016/01/17/understanding-marshmallow-runtime-permission/
 
 @Override
     public void run() {
@@ -397,9 +395,9 @@ https://droidyue.com/blog/2016/01/17/understanding-marshmallow-runtime-permissio
 
 接口回调是一种主动行的API，控制反转，谁定义这个接口，然后调用，就掌握主动权。
 
-astah 的使用 上班期间学会
+//astah 的使用 上班期间学会
 
-六大设计原则：
+六大设计原则：//https://www.cnblogs.com/dolphin0520/p/3919839.html
     1，单一职责：只有一个引起变化的原因
     2，开闭原则：对扩开放，对修改关闭，即在尽量不修改原有代码的情况下对代码进行扩展。
     3，里氏替换原则：所有引用基类的地方都必须能透明地使用子类对象，尽量把基类设计成抽象类或接口。里氏替换原则是开闭原则的实现方式之一。
@@ -407,3 +405,29 @@ astah 的使用 上班期间学会
        等等，开闭原则是目标，里氏替换原则是基础，依赖倒置原则是手段。
     5，接口隔离原则：拒绝大接口，使用小接口，客服端不应该依赖它们不需要的接口。
     6，迪米特法则：降低耦合，一个对象的改变不会其它太多对象带来影响；可以通过引入桥梁来通讯，降低对象自建的耦合度；耦合度越低越有利于复用。//海贼王472集
+
+Android 动画
+    1，shange图：放大失真，GPU绘制
+    2，矢量图：放大不失真，CPU绘制
+
+    补间动画：new XXAnimator()；XXAnimator.setDurtion()；View.startAnimater(XXAnimator);
+    帧动画：animation = new AnimationDrawable()；animation.addFrame(draw,100)；View.setImaeDrawable(animation)；animation.start()。
+    属性动画：不断的改变属性值来实现的，初始值和结束值中间的值是插值。
+            ValueAnimator animator = ValueAnimator.foInt(0,20);
+            animator.setDuration(2000);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(v->{public void onAnimatorUpdate{}}));
+            animator.start();
+            Valueanimator只是帮我们计算除了动画过程中的一些插值，并没有让我门看到任何动画效果。
+            public static ValueAnimator ofInt(int... values) {
+                    ValueAnimator anim = new ValueAnimator();
+                    anim.setIntValues(values);
+                    return anim;
+                }
+            public static ObjectAnimator ofInt(Object target, String propertyName, int... values) {
+                    ObjectAnimator anim = new ObjectAnimator(target, propertyName);
+                    anim.setIntValues(values);
+                    return anim;
+                }
+
+            ObjectAnimator才是最常用的类，可以对任何对象的任何属性进行操作，来实现真的动画。
+

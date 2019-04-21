@@ -1,6 +1,10 @@
 package com.zjf.nicework.activity;
 
 import android.Manifest;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,13 +12,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.zjf.nicework.R;
 import com.zjf.nicework.utils.JniUtil;
 import com.zjf.nicework.utils.LogUtils;
+import com.zjf.nicework.utils.ToastUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private Set<Integer> set = new HashSet<>();
     private Map<Integer, String> map = new TreeMap<>();
     private TextView tv;
-    private ImageView iv;
+    private ImageView ivPicture;
 
     private Stack<Integer> stack = new Stack<>();
 
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         String[] periMissions = new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)!= PackageManager.PERMISSION_GRANTED) {
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             checkPermission(periMissions);
         }
 
@@ -71,10 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
         initView();
 
+        initData();
+
     }
 
     private void checkPermission(String[] periMissions) {
-        requestPermissions(periMissions,REQUEST_PERMISSION_CODE);
+        requestPermissions(periMissions, REQUEST_PERMISSION_CODE);
     }
 
     @Override
@@ -90,23 +96,18 @@ public class MainActivity extends AppCompatActivity {
     private void initView() {
 
         tv = findViewById(R.id.sample_text);
-        iv = findViewById(R.id.iv_pic);
+        ivPicture = findViewById(R.id.iv_pic);
         int sum = JniUtil.getInstance().sum(2, 3);
         String realSum = sum + "";
         tv.setText(realSum);
         int result = diGui(4);
         LogUtils.d(TAG, "result:" + result);
 
-        tv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     private void initData() {
 
+        //复制图片，把图片显示在控件上
         try {
             //输入流：文件读到内存 输出流：内存读到文件
             File file = new File(Environment.getExternalStoragePublicDirectory("Pictures"), "lufei.png");
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
             Bitmap bitmap = BitmapFactory.decodeStream(in2);
 
-            iv.setImageBitmap(bitmap);
+            ivPicture.setImageBitmap(bitmap);
 
             in.close();
             out.close();
@@ -143,6 +144,49 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        //增加动画效果
+        ObjectAnimator animator = ObjectAnimator.ofFloat(ivPicture, "scaleX", 1.0f, 0.4f);
+        animator.setDuration(1000);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float value = (float) animation.getAnimatedValue();
+                LogUtils.d(TAG, value + "");
+            }
+        });
+
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                ToastUtil.showShort(MainActivity.this, "onAnimationStart");
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                ToastUtil.showShort(MainActivity.this, "onAnimationEnd");
+
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+                ToastUtil.showShort(MainActivity.this, "onAnimationRepeat");
+            }
+        });
+
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+                ToastUtil.showShort(MainActivity.this, "onAnimationStart!!!!");
+            }
+        });
+
+        animator.start();
 
         //动态代理
         JackSon jackSon = new JackSon();
@@ -261,4 +305,5 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
 }
