@@ -412,7 +412,7 @@ APP的启动流程：启动图标->Main(ActivityThread)->attahc(false)->IActivit
     6，迪米特法则：降低耦合，一个对象的改变不会其它太多对象带来影响；可以通过引入桥梁来通讯，降低对象自建的耦合度；耦合度越低越有利于复用。//海贼王472集
 
 Android 动画
-    1，shange图：放大失真，GPU绘制
+    1，栅格图：也叫位图，放大失真，GPU绘制
     2，矢量图：放大不失真，CPU绘制
 
     补间动画：new XXAnimator()；XXAnimator.setDurtion()；View.startAnimater(XXAnimator);
