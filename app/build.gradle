@@ -58,4 +58,14 @@ dependencies {
 
     implementation project(':commonlib')
 
+    //网络框架
+    implementation rootProject.ext.dependencies["okhttp3"]
+    implementation rootProject.ext.dependencies["retrofit"]
+    implementation rootProject.ext.dependencies["retrofit-converter-gson"]
+    implementation rootProject.ext.dependencies["retrofit-adapter-rxjava"]
+    implementation rootProject.ext.dependencies["converter-scalars"]
+    implementation rootProject.ext.dependencies["gson"]
+
+    implementation rootProject.ext.dependencies["glide"]
+
 }

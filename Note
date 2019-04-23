@@ -449,5 +449,23 @@ Android 组件化
         查询 通过key获取目标界面信息
         关联
         跳转
-	
+
 //https://www.jianshu.com/p/a44bd13d2fa0
+
+
+10大开源框架：
+    okhttp
+    两大核心：dispather  维护同步和异步网路请求的状态（几个3队列），同时维护线程池。
+            interceptor
+
+    dispather - asycall -excetor.excete(asycall)
+                asycall.excete()
+
+                chain = realInterceptorChain(interceptorChains,...)
+                chain.proceed() -> interceptor.intercept(next)->realChain.preceed()
+
+
+    1，封装call对象 2，dispatcher对n请求进行分发 3，getResponceWithInterceptors()
+
+    Glide(谷歌官方推荐的图片加载框架)
+        Glide.with(this).load(utl).into(imageView);
