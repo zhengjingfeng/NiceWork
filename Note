@@ -452,6 +452,17 @@ Android 组件化
 
 //https://www.jianshu.com/p/a44bd13d2fa0
 
+Scoket通信：
+	Socket提供了程序内部与外界通信的端口并为通信双方提供了数据传输通道。
+	Socket很简单 两种方式的Socket(TCP/UDP) TCP以流的方式发送数据，UDP以包的形式发送数据。
+
+
+
+
+
+
+
+
 
 10大开源框架：
     okhttp
