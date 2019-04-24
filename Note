@@ -257,7 +257,7 @@ Handler机制：
 
     public Handler(CallBack call, ) {
         //...
-        mLooper = Looper.myLooper(); //从ThreadLocal中取出looper
+        mLooper = Looper.myLooper(); //从ThreadLocal中取出looper，创建Handler必须要有Looper对象的远影
         mQueue = mLooper.mQueue;
         //mCallback = callback;
         //mAsynchronous = async;
@@ -412,7 +412,7 @@ APP的启动流程：启动图标->Main(ActivityThread)->attahc(false)->IActivit
     6，迪米特法则：降低耦合，一个对象的改变不会其它太多对象带来影响；可以通过引入桥梁来通讯，降低对象自建的耦合度；耦合度越低越有利于复用。//海贼王472集
 
 Android 动画
-    1，栅格图：也叫位图，放大失真，GPU绘制
+    1，栅格图：也叫位图，像素点组成，放大失真，GPU绘制，Android中的位图称作bitmap，所以可以通过像素进行compress压缩。
     2，矢量图：放大不失真，CPU绘制
 
     补间动画：new XXAnimator()；XXAnimator.setDurtion()；View.startAnimater(XXAnimator);
@@ -456,14 +456,6 @@ Scoket通信：
 	Socket提供了程序内部与外界通信的端口并为通信双方提供了数据传输通道。
 	Socket很简单 两种方式的Socket(TCP/UDP) TCP以流的方式发送数据，UDP以包的形式发送数据。
 
-
-
-
-
-
-
-
-
 10大开源框架：
     okhttp
     两大核心：dispather  维护同步和异步网路请求的状态（几个3队列），同时维护线程池。
@@ -474,7 +466,6 @@ Scoket通信：
 
                 chain = realInterceptorChain(interceptorChains,...)
                 chain.proceed() -> interceptor.intercept(next)->realChain.preceed()
-
 
     1，封装call对象 2，dispatcher对n请求进行分发 3，getResponceWithInterceptors()
 
