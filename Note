@@ -49,24 +49,27 @@ git commit -m 'update .gitignore'
 http 请求3位的返回码中 3开头是重定向，4开头代表客服端错误（404页面：file not found），5开头代表服务器错误，当然200是正常响应
 cookie是客服端保持状态的方案 session是在服务端保持状态的方案
 
-域名解析 --> 发起TCP的3次握手 --> 建立TCP连接后发起http请求 --> 服务器响应http请求，浏览器得到html代码 --> 浏览器解析html代码，并请求html代码中的资源（如js、css、图片等） --> 浏览器对页面进行渲染呈现给用户
+域名解析 --> 发起TCP的3次握手 --> 建立TCP连接后发起http请求 --> 服务器响应http请求，浏览器得到html代码 --> 浏览器解析html代码，
+	并请求html代码中的资源（如js、css、图片等） --> 浏览器对页面进行渲染呈现给用户
 
 //不同事件监听的优先级
 1.onTouch返回true，则onTouchEvent和onClick都不会执行；
 2.onTouch(onTouchListener)返回false，如果onTouchEvent不是返回super.onTouchEvent(event);
-  也就算是说不管onTouchEvent返回true还是false，onClick(onCLickListener)都不会执行，
+  不管onTouchEvent返回true还是false，onClick(onCLickListener)都不会执行，
   这可以从super的源码看出（源码里会进行判断执行到OnCLickListener）,而且我们知道onClick执行也就会在触摸抬起(up)的时候执行；
 
 //Android的UI操作是线程不安全的
 线程安全：
-多个线程访问时，采用枷锁的机制，当一个线程访问类的某个数据时，进行保护，其它线程不能访问，当前线程执行完毕后，其它线程才能访问。不会出现数据错乱不一致或数据污染
+多个线程访问时，采用枷锁的机制，当一个线程访问类的某个数据时，进行保护，其它线程不能访问，当前线程执行完毕后，其它线程才能访问。
+	不会出现数据错乱不一致。
 线程不安全：
-不采用枷锁机制，多个线程可以同时访问，可能会造成多个线程都在修改数据造成所得到的数据是脏数据
+不采用枷锁机制，多个线程可以同时访问，可能会造成多个线程都在修改数据造成所得到的数据不一致。
 
 //单位转换（这次看懂了，不想再看第二遍了）
 px:像素 手机的分辨率 如：小米8的分辨率为 2248*1080 1px代表屏幕上的一个像素点。
-dip:dots per inch 对角线每英寸对应的像素点。dpi = \dfrac{\sqrt{height^2 + width^2}}{size}。
-    height和width即为长宽的像素，平方和即为对角线的像素个数，size即我们常说的5寸手机、4寸手机中的5和4，即对角线的长度。 所以，一样是5寸的手机，分辨率越高，dpi越高。分辨率相同，屏幕对角线英寸数越小，dpi越高。
+dpi:dots per inch 对角线每英寸对应的像素点。dpi = \dfrac{\sqrt{height^2 + width^2}}{size}。
+    height和width即为长宽的像素，平方和即为对角线的像素个数，size即我们常说的5寸手机、4寸手机中的5和4，即对角线的长度。
+    	所以，一样是5寸的手机，分辨率越高，dpi越高。分辨率相同，屏幕对角线英寸数越小，dpi越高。
 重点：dp = px*(dpi/160) 再像素密度为160的屏幕上1dp = 1px
    hdpi	160dpi-240dpi	800*480 (Wide VGA)	1dp = 1.5px
    xhdpi	240dpi-320dpi	1280*720	           1dp = 2px
@@ -98,16 +101,19 @@ api是对外公开的，implementation是内部实现，对外隐藏的
 
   final修饰的类不能被继承，被修饰的方法不能够重写。
 
-  static修饰的成员变量和成员方法，被类的所有对象所共享，独立于类的对象，在内存中只有一份，在类初次加载时被初始化，Java虚拟机就能根据类名在运行时数据区的方法区内找到他们。
+  static修饰的成员变量和成员方法，被类的所有对象所共享，独立于类的对象，在内存中只有一份，在类初次加载时被初始化，
+  	Java虚拟机就能根据类名在运行时数据区的方法区内找到他们。
 
   static int a=1;
   static final b=1;
   这里a和b的区别在于，a在程序里可以被重新赋值为2或3或等等的整数，而b在程序里不能被重新赋值，b永远都为1，也就是说b是一个常量。
   final int c=1;
   static final b=1;
-  这里c和b的区别在于，b存放在静态空间，不会在程序运行时被释放，jvm会根据类名找到它（要使用当然是要找到它，最长生命周期的单利😄），它永远占着内存直到程序终止，而c在程序用完它而不会再用到它的时候就会被自动释放，不再占用内存。
+  这里c和b的区别在于，b存放在静态空间，不会在程序运行时被释放，jvm会根据类名找到它（要使用当然是要找到它，最长生命周期的单利😄），
+  	它永远占着内存直到程序终止，而c在程序用完它而不会再用到它的时候就会被自动释放，不再占用内存。
 
-  static，final修饰一个HashMap用来保存配置特别好😯，引用更古不变，又可以修改这个map对象，只要关联的类被加载一次，运行期间还不被释放，只要运行就永生不灭，最长的生命周期
+  static，final修饰一个HashMap用来保存配置特别好，引用更古不变，又可以修改这个map对象，只要关联的类被加载一次，运行期间还不被释放，
+  	只要进程没有退出就永生不灭，最长的生命周期
 
 //绝对路径和相对路径
   绝对路径 Mac /Users/zhengjingfeng/Desktop/a.txt
@@ -141,7 +147,8 @@ api是对外公开的，implementation是内部实现，对外隐藏的
 String s1 = new String("s1") ;
 String s2 = new String("s1") ;
 上面创建了几个String对象?
-答案:3个 ,编译期Constant Pool中创建1个"s1",运行期heap中创建2个.（用new创建的每new一次就在堆上创建一个对象，用引号创建的如果在常量池中已有就直接指向，不用创建）
+答案:3个 ,编译期Constant Pool中创建1个"s1",运行期heap中创建2个.（每new一次就在堆上创建一个对象，用引号创建的如果在常量池中已有就直接指向，
+	不用创建）
 
 //今天才弄明白，真实服了
     <TextView
@@ -166,14 +173,13 @@ String s2 = new String("s1") ;
         同时建议大家也试一下minWidth maxWidth这些属性，可以更好的帮助我们理解布局文件的原理。
         
 tip:
-onHiddenChange方法可用来刷洗show和hide方式显示和隐藏起来的fragment
-
+onHiddenChange方法可用来刷新show和hide方式显示和隐藏起来的fragment
 
 https://gofans.cn/app/61bd8db6-e98e-4eaf-bba7-2f77f733bc2a
 https://gofans.cn/app/26004a30-1a03-4353-9176-955d67d21609
 
 <merge> 合并融合
-LayoutInflater遇见<merge>标签时,就会跳过<merge>标签并且把<merge>标签的子view添加到<merge>标签的父view中.
+	LayoutInflater遇见<merge>标签时,就会跳过<merge>标签并且把<merge>标签的子view添加到<merge>标签的父view中.
 
 //布局填充
 LayoutInflater加载布局时的inflate方法的第三个参数attachToRoot
@@ -185,17 +191,19 @@ if (root != null && attachToRoot) {
 }
 如果root不为null，attachToRoot为false，表示不将layout布局添加到root布局，若要添加则需要手动addView
 
-如果root不为null，而attachToRoot为false的话，表示不将第一个参数所指定的View添加到root中，那么这个时候有的小伙伴可能就有疑问了，既然不添加到root中，那我还写这么多干嘛？我第二个参数直接给null不就可以了？其实不然，这里涉及到另外一个问题：我们在开发的过程中给控件所指定的layout_width和layout_height到底是什么意思？该属性的表示一个控件在容器中的大小，就是说这个控件必须在容器中，这个属性才有意义，否则无意义。这就意味着如果我直接将linearlayout加载进来而不给它指定一个父布局，则inflate布局的根节点的layout_width和layout_height属性将会失效（因为这个时候linearlayout将不处于任何容器中，那么它的根节点的宽高自然会失效）。如果我想让linearlayout的根节点有效，又不想让其处于某一个容器中，那我就可以设置root不为null，而attachToRoot为false。这样，指定root的目的也就很明确了，即root会协助linearlayout的根节点生成布局参数，只有这一个作用。
+如果root不为null，而attachToRoot为false的话，表示不将第一个参数所指定的View添加到root中，那么这个时候有的小伙伴可能就有疑问了，
+	既然不添加到root中，那我还写这么多干嘛？我第二个参数直接给null不就可以了？
+	其实不然，这里涉及到另外一个问题：我们在开发的过程中给控件所指定的layout_width和layout_height到底是什么意思？
+	该属性的表示一个控件在容器中的大小，就是说这个控件必须在容器中，这个属性才有意义，否则无意义。
+	这就意味着如果我直接将linearlayout加载进来而不给它指定一个父布局，
+	则inflate布局的根节点的layout_width和layout_height属性将会失效（因为这个时候linearlayout将不处于任何容器中，
+	那么它的根节点的宽高自然会失效）。如果我想让linearlayout的根节点有效，又不想让其处于某一个容器中，那我就可以设置root不为null，
+	而attachToRoot为false。这样，指定root的目的也就很明确了，即root会协助linearlayout的根节点生成布局参数，只有这一个作用。
 
 https://www.cnblogs.com/whoislcj/p/5714760.html//组合控件
 
-https://blog.csdn.net/ceovip/article/details/88922528
 在Project的gradle.properties文件中，一些配置信息都可以在Module的build.gradle文件中读取到。
 作为application或者module时，AndroidManifest.xml是不一样的
-
-1.Command+W（Window） 关闭单个窗口
-2.Command+Q（Quit） 关闭应用并结束应用进程
-3.Command+Option+Esc 强制关闭应用
 
 性能优化：常见内存泄漏（L3_02）  工具（Profiler LeakCanary hint）
    单利 内部类（handler 弱引用）不需要的监听移除 不需要的资源即时释放（bitmap cursor broadcast IO流）
@@ -244,7 +252,7 @@ Handler机制：
     public static loop() {
         Looper me = myLooper();
 	//...
-	final MessageQueue queue = me.mQueue;
+	final MessageQueue queue = me.mQueue;//loop构造方法初始化Queue
 	//...
 	for(;;){
 		Message msg = queue.next();//next() 方法返回一个msg
@@ -255,9 +263,9 @@ Handler机制：
         this.(null,false);
     }
 
-    public Handler(CallBack call, ) {
+    public Handler(CallBack call, Boolean b){
         //...
-        mLooper = Looper.myLooper(); //从ThreadLocal中取出looper，创建Handler必须要有Looper对象的远影
+        mLooper = Looper.myLooper(); //从ThreadLocal中取出looper,静态方法，获取当前线程的looper对象
         mQueue = mLooper.mQueue;
         //mCallback = callback;
         //mAsynchronous = async;
@@ -307,21 +315,21 @@ condition = lock.newCondition();
     AndFix(底层二进制入手) Tinker（类加载机制入手）
     1,PathClassLoader
         用来加载应用程序的dex
-    2,PathClassLoader
+    2,DexClassLoader
         可以加载某个指定的dex（限制：必须是应用程序目录下的,包名目录下）
 
     BaseDexClassLoad{
         Class<?> findClass(String className){
-		Class c = pathList.findClass(name, suppressedExceptions);//DexPathList.findClass()
+		Class c = pathList.findClass(className, suppressedExceptions);//DexPathList.findClass()
 	}
     }
     
     //DexPathList类
-      ublic Class<?> findClass(String name, List<Throwable> suppressed) {
+      pblic Class<?> findClass(String name, List<Throwable> suppressed) {
          for (Element element : dexElements) {//遍历dexElements，热修复就是把新的dex加入到dexElements集合里面。
-             Class<?> clazz = element.findClass(name, definingContext, suppressed);
+             Class<?> clazz = element.findClass(className, definingContext, suppressed);
              if (clazz != null) {
-                 return clazz;//找到了就返回，热修复把包含修改后的class的dex加入到dexElements集合里面最前面就可以，应该找到那个正确的claZZ就返回。。
+                return clazz;//找到了就返回，热修复把包含修改后的class的dex加入到dexElements集合里面最前面就可以，找到那个修改后的class就返回。。
              }
          }
 
@@ -334,8 +342,8 @@ condition = lock.newCondition();
     BaseDexClassLoader->DexPathList pathList 字段->  Element[] DexElements 字段是我们需要的。
 
 动脑学院 腾讯学院
-趋势：kotlin rn 车载 VR Ai；对基础内容深入理解，尽快向高级水平靠近和达到，第二步再找准定位和细分领域。这个英文水平是个什么情况？？？
 
+趋势：kotlin rn 车载 VR Ai；对基础内容深入理解，尽快向高级水平靠近和达到，第二步再找准定位和细分领域。这个英文水平是个什么情况？？？
 short索引dex文件中的方法数，受到short取值范围的影响，方法不能超过65535。
 
 数据结构与算法：
@@ -358,7 +366,7 @@ short索引dex文件中的方法数，受到short取值范围的影响，方法�
 
     HashMap(散列链表)：    transient Node<K,V>[] table; 散列链表
 
-    键值对的 index 有key 的hash值和键值对数组的长度两个因素决定
+    键值对的 index 由key 的hash值和键值对数组的长度两个因素决定
 
     int index = hash(key)&(tab.length() - 1);//tab 是键值对数组
 
@@ -374,18 +382,13 @@ short索引dex文件中的方法数，受到short取值范围的影响，方法�
                 e.printStackTrace();
             }
 
-
 设计模式：说白了就是套路
     简单工厂：场景：创建对象，降低客服端与模块之间的耦合（最少知识原则）
     工厂方法模式：把具体的实现延迟到子类
     抽象工厂模式：每个工厂只生产一种产品，产品族
     原型模式：
 
-APP的启动流程：启动图标->Main(ActivityThread)->attahc(false)->IActivityManager mgr = ActivityManager.getService()/---
-                final IBinder b = ServiceManager.getService(Context.ACTIVITY_SERVICE);
-                                    final IActivityManager am = IActivityManager.Stub.asInterface(b);
-                                    return am;---/
-             ->mgr.attachApplication(mAppThread, startSeq);
+APP的启动流程：？？？
 
 开发的时候将所有的单利放到一个HashMap里面管理
 
@@ -406,12 +409,14 @@ APP的启动流程：启动图标->Main(ActivityThread)->attahc(false)->IActivit
     1，单一职责：只有一个引起变化的原因
     2，开闭原则：对扩开放，对修改关闭，即在尽量不修改原有代码的情况下对代码进行扩展。
     3，里氏替换原则：所有引用基类的地方都必须能透明地使用子类对象，尽量把基类设计成抽象类或接口。里氏替换原则是开闭原则的实现方式之一。
-    4，依赖倒置原则：针对接口编程，不针对实现编程。使用抽象类和接口进行变量申明，参数申明，返回值申明。调用的时候具体对象通过依赖注入（构造注入，设置注入setter，接口注入）
+    4，依赖倒置原则：针对接口编程，不针对实现编程。使用抽象类和接口进行变量申明，参数申明，返回值申明。调用的时候具体对象通过依赖注入
+    	（构造注入，设置注入setter，接口注入）
        等等，开闭原则是目标，里氏替换原则是基础，依赖倒置原则是手段。
     5，接口隔离原则：拒绝大接口，使用小接口，客服端不应该依赖它们不需要的接口。
     6，迪米特法则：降低耦合，一个对象的改变不会其它太多对象带来影响；可以通过引入桥梁来通讯，降低对象自建的耦合度；耦合度越低越有利于复用。//海贼王472集
 
 Android 动画
+    1，栅格图：也叫位图，由像素点组成，放大失真，GPU绘制，bitmap是Android中的位图，所以可以通过改变像素进行压缩。
     1，栅格图：也叫位图，像素点组成，放大失真，GPU绘制，Android中的位图称作bitmap，所以可以通过像素进行compress压缩。
     2，矢量图：放大不失真，CPU绘制
 
@@ -449,12 +454,19 @@ Android 组件化
         查询 通过key获取目标界面信息
         关联
         跳转
-
+	
 //https://www.jianshu.com/p/a44bd13d2fa0
 
 Scoket通信：
 	Socket提供了程序内部与外界通信的端口并为通信双方提供了数据传输通道。
 	Socket很简单 两种方式的Socket(TCP/UDP) TCP以流的方式发送数据，UDP以包的形式发送数据。
+	
+https://github.com/lingcimi/jjdxm_dialogui
+	
+	
+	
+	
+	
 
 10大开源框架：
     okhttp
