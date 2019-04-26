@@ -461,11 +461,6 @@ Scoket通信：
 	Socket很简单 两种方式的Socket(TCP/UDP) TCP以流的方式发送数据，UDP以包的形式发送数据。
 	
 https://github.com/lingcimi/jjdxm_dialogui
-	
-	
-	
-	
-	
 
 10大开源框架：
     okhttp
@@ -482,3 +477,9 @@ https://github.com/lingcimi/jjdxm_dialogui
 
     Glide(谷歌官方推荐的图片加载框架)
         Glide.with(this).load(utl).into(imageView);
+
+    RXJava 响应式编程（比如：下雨打伞，下雨是事件，打伞是响应），异步事件流。
+        创建被观察者：create just from三种方法
+        创建观察者：new Observer(){oncompleted,onerror,onnext}
+        订阅：observable.subscrbe(observer)/observable.subscrbe(subscriber)。
+        操作符和线程控制
