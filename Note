@@ -453,8 +453,6 @@ Android 组件化
         查询 通过key获取目标界面信息
         关联
         跳转
-	
-//https://www.jianshu.com/p/a44bd13d2fa0
 
 Scoket通信：
 	Socket提供了程序内部与外界通信的端口并为通信双方提供了数据传输通道。
@@ -482,4 +480,10 @@ https://github.com/lingcimi/jjdxm_dialogui
         创建被观察者：create just from三种方法
         创建观察者：new Observer(){oncompleted,onerror,onnext}
         订阅：observable.subscrbe(observer)/observable.subscrbe(subscriber)。
+
         操作符和线程控制
+            map操作符：转换操作符，通过映射转化事件（事件指的是数据 ）。
+            flatMap:
+            zip:多个observable合并
+
+一般看源码不看if🐂😂

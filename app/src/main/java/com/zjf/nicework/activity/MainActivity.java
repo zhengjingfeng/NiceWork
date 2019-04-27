@@ -21,10 +21,15 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.zjf.mylibrary.MyLibraryService;
+import com.zjf.nicework.MyApplication;
 import com.zjf.nicework.R;
+import com.zjf.nicework.bean.User;
+import com.zjf.nicework.bean.UserDao;
 import com.zjf.nicework.utils.JniUtil;
 import com.zjf.nicework.utils.LogUtils;
 import com.zjf.nicework.utils.ToastUtil;
+
+import org.greenrobot.greendao.query.QueryBuilder;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -71,10 +76,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Autowired(name = "/mylibrary/MyLibraryService")
     public MyLibraryService myLibraryService;
 
+    UserDao mUserDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        QueryBuilder.LOG_SQL = true;
+        QueryBuilder.LOG_VALUES = true;
 
         ARouter.getInstance().inject(this);
 
@@ -89,8 +99,49 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initView();
 
+        initDataBase();
+
         initData();
 
+    }
+
+    private void initDataBase() {
+        mUserDao = MyApplication.getInstance().getDaoSession().getUserDao();
+        mUserDao.deleteAll();
+        insertList();
+        queryOne("孙悟空");
+        //删除主键为9的数据
+        mUserDao.deleteByKey(new Long((long)9));
+    }
+
+    public void insertList() {
+        User user1 = new User();
+        user1.setName("孙悟空");
+        user1.setUsercode("001");
+        user1.setUserAddress("花果山");
+
+        User user2 = new User();
+        user2.setName("八戒");
+        user2.setUsercode("002");
+        user2.setUserAddress("高老庄");
+
+        User user3 = new User();
+        user3.setName("沙悟净");
+        user3.setUsercode("003");
+        user3.setUserAddress("流沙河");
+
+        List<User> list = new ArrayList<>();
+        list.add(user1);
+        list.add(user2);
+        list.add(user3);
+
+        mUserDao.insertInTx(list);
+    }
+
+    public void queryOne(String name) {
+        User user = mUserDao.queryBuilder().where(UserDao.Properties.Name.eq(name)).build().unique();
+        LogUtils.d(TAG, user.getName());
+        tv.setText(user.getName());
     }
 
     private void checkPermission(String[] periMissions) {
@@ -243,7 +294,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_lufei:
                 ARouter.getInstance().build("/mylibrary/main").navigation();
                 break;
-                default:
+            default:
         }
     }
 

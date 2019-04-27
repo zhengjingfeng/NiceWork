@@ -1,9 +1,12 @@
 package com.zjf.nicework;
 
 import android.app.Application;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.squareup.leakcanary.LeakCanary;
+import com.zjf.nicework.bean.DaoMaster;
+import com.zjf.nicework.bean.DaoSession;
 import com.zjf.nicework.conf.Constants;
 
 /**
@@ -13,13 +16,44 @@ import com.zjf.nicework.conf.Constants;
  */
 public class MyApplication extends Application {
 
+    public static MyApplication instance;
+
+    private DaoMaster mDaoMaster;
+    private DaoSession mDaoSession;
+    private SQLiteDatabase mDatabase;
+
     @Override
+
     public void onCreate() {
         super.onCreate();
+
+        instance = this;
 
         initLeakCanary();
 
         initARouter();
+
+        setDataBase();
+
+    }
+
+    private void setDataBase() {
+        SqliteHelp help = new SqliteHelp(this, "nicework.db", null);
+        SQLiteDatabase db = help.getWritableDatabase();
+        mDaoMaster = new DaoMaster(db);
+        mDaoSession = mDaoMaster.newSession();
+    }
+
+    public static MyApplication getInstance() {
+        return instance;
+    }
+
+    public DaoMaster getDaoMaster() {
+        return mDaoMaster;
+    }
+
+    public DaoSession getDaoSession() {
+        return mDaoSession;
     }
 
     public void initLeakCanary() {
