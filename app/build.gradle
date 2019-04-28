@@ -36,6 +36,10 @@ android {
         }
     }
 
+    greendao {
+        schemaVersion 1
+    }
+
 }
 
 dependencies {
