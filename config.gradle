@@ -45,7 +45,8 @@ ext {
 
             "eventbus"                : 'org.greenrobot:eventbus:3.1.1',
 
-            //https://mvnrepository.com/artifact/org.greenrobot/greendao/3.2.2
-            "greendao"                : 'org.greenrobot:greendao:3.2.2'
+            "greendao"                : 'org.greenrobot:greendao:3.2.2',
+
+            "GreenDaoUpgradeHelper"   : 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.1.0'
     ]
 }
