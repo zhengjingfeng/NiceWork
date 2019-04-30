@@ -493,9 +493,8 @@ Android 弹窗 https://github.com/limxing/Android-PromptDialog/
 kotlin官方博客：https://blog.jetbrains.com/kotlin/
 kotlin官网https://kotlinlang.org/
 
-operator重载方法
-
-class persion(name:String, age Int) {
+kotlin:
+	class persion(name:String, age Int) {
 	
 	var name = "zhangsan"
 	private set
@@ -517,9 +516,6 @@ class persion(name:String, age Int) {
 		this.phone = phone
 	}
 }
-
-
-kotlin:
 	标签处返回tag@
 	when加强版switch
 	
@@ -529,7 +525,6 @@ kotlin:
 	
 	函数变量 val padd  = :: add(两个冒号是对函数的引用)
 
-	
-
 	默认参数：fun sendRequest(path String,method String = "GET") {} //method为默认参数，可以不用传
-	kotlin类默认是final的，要继承open
+	kotlin类默认是final的，要继承open 
+	关键字 inner inline reified operator重载方法 open  ： String::class out接收当前类型或子类 in传当前类型或父类
