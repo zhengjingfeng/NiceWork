@@ -465,6 +465,7 @@ https://github.com/lingcimi/jjdxm_dialogui
     两大核心：dispather  维护同步和异步网路请求的状态（几个3队列），同时维护线程池。
             interceptor
 
+
     dispather - asycall -excetor.excete(asycall)
                 asycall.excete()
 
@@ -491,5 +492,15 @@ https://github.com/lingcimi/jjdxm_dialogui
 Android 弹窗 https://github.com/limxing/Android-PromptDialog/
 kotlin官方博客：https://blog.jetbrains.com/kotlin/
 kotlin官网https://kotlinlang.org/
- 
- 
+
+kotlin:
+	标签处返回tag@
+	when加强版switch
+	
+	b:int = a?.toInt():-1
+
+	函数表达式：函数体只有一行，可以优化fun add(a:Int,b Int) = a+b;//val padd:(Int,Int)->int = {a,b -> a+b}
+	
+	函数变量 val padd  = :: add(两个冒号是对函数的引用)
+
+	默认参数：fun sendRequest(path String,method String = "GET") {} //method为默认参数，可以不用传
