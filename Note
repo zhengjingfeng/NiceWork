@@ -405,6 +405,24 @@ APP的启动流程：？？？
 
 //astah 的使用 上班期间学会
 
+枚举：一个类的子类有几个已经确定，就把它定义为枚举
+
+enum COLOR {
+        /**
+         *三原色
+         */
+        RED(255, 0, 0), GREEN(0, 255, 0), BLUE(0, 0, 255);
+
+        /**
+         * @param r
+         * @param g
+         * @param b
+         */
+        COLOR(int r, int g, int b) {
+
+        }
+    }
+
 六大设计原则：//https://www.cnblogs.com/dolphin0520/p/3919839.html
     1，单一职责：只有一个引起变化的原因
     2，开闭原则：对扩开放，对修改关闭，即在尽量不修改原有代码的情况下对代码进行扩展。
@@ -496,7 +514,7 @@ kotlin官网https://kotlinlang.org/
 kotlin:
 	class persion(name:String, age Int) {
 	
-	var name = "zhangsan"
+	val name by lazy {"张三"}//用的时候在加载（懒加载）
 	private set
 	
 	var age = 20
@@ -506,8 +524,8 @@ kotlin:
 		}
 	}
 	
-	var phone:String = ""
-	
+	lateInit var phone:String;//延迟加载，用的时候加载
+
 	init{
 		this.name = name
 		this.age = age
@@ -527,4 +545,40 @@ kotlin:
 
 	默认参数：fun sendRequest(path String,method String = "GET") {} //method为默认参数，可以不用传
 	kotlin类默认是final的，要继承open 
-	关键字 inner inline reified operator重载方法 open  ： String::class out接收当前类型或子类 in传当前类型或父类
+	关键字 inner class inline（内联） reified operator重载方法 open  ： String::class out接收当前类型或子类 in传当前类型或父类
+	      lateInit 延迟加载
+
+    委托：class smallHeadFather(var warsPower:WarsPower):WarsPower by warsPower
+
+    by lazy:懒加载  lateInit 延迟加载
+
+    扩展函数：
+    fun String.isEmpty():Boolean { //扩展String这个类，增加函数isEmpty() 扩展函数可以被子类访问，不能被复写
+        return this==null||this.size() == 0
+    }
+
+    单利：
+        object 关键字 默认filed全部是静态 method全部是final
+
+    伴生对象：控制属性的静态
+
+    class Utils private constructor() {
+            var age: Int = 20
+
+            companion object {
+                var name: String = "张三"
+                val instance by lazy { Utils() } //懒加载 只加载线程安全
+            }
+        }
+
+    数据类：data class{}
+    密封类：sealed class
+
+    List：
+        listOf();只读
+        mutableListOf();可读写
+
+    函数式编程：
+        闭包：让函数携带状态
+
+    高阶函数与lambda（匿名函数）一般同时出现

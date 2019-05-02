@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         insertList();
         queryOne("孙悟空");
         //删除主键为9的数据
-        mUserDao.deleteByKey(new Long((long)9));
+        mUserDao.deleteByKey(new Long((long) 9));
     }
 
     public void insertList() {
@@ -389,6 +389,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void run() {
                 LogUtils.d(TAG, "车，跑");
             }
+        }
+    }
+
+    enum COLOR {
+        /**
+         *
+         */
+        RED(255,0,0),GREN(0,255,0),BLUE(0,255,255);
+
+        private int r;
+
+        private int g;
+        private int b;
+
+        COLOR(int r, int g, int b) {
+            this.r = r;
+            this.g = g;
+            this.b = b;
         }
     }
 
