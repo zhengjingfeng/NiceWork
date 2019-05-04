@@ -478,6 +478,17 @@ Scoket通信：
 	
 https://github.com/lingcimi/jjdxm_dialogui
 
+JS调用:
+    mWebview.addJavascriptInterface(this, "native");
+
+    @JavascriptInterface
+    public void jsToNative(String type, String locationData) {
+        if ("shareTo".equals(type)) {
+            TaskIDBean taskIDBean = new Gson().fromJson(locationData, TaskIDBean.class);
+            initShareParams(taskIDBean.getTask_id(), taskIDBean.getType());
+        }
+    }
+
 10大开源框架：
     okhttp
     两大核心：dispather  维护同步和异步网路请求的状态（几个3队列），同时维护线程池。
