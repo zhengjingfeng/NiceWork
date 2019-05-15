@@ -267,6 +267,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         JackSon jackSon = new JackSon();
         StarProxy starProxy = new StarProxy();
         starProxy.setTarget(jackSon);
+
         Star star = (Star) starProxy.CreatProxyObj();
         star.sing("beat it");
 
