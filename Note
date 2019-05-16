@@ -465,7 +465,11 @@ CompileSdkVersion和BuildToolVersion
 3,可以用高版本的build-tool去构建一个低版本的sdk工程，例如build-tool的版本为28，去构建一个sdk版本为27的
 
 Android 组件化
-    以前的分包变成了现在的模块
+    以前的分包变成了现在的组件模块
+    组件间的通信采用阿里的 Arouter
+    公共组件（功能组件）：第三发依赖 常用功能（工具类）自定义控件 基础类 权限
+    业务组件：所有的业务组件依赖依赖公共组件
+    APP壳：对整个项目组件模块进行组装，拼凑成一个完整的APP
     Arouter:（A->B ）
         注册 B界面将类的信息通过key_value的形式注册到Arouter中
         查询 通过key获取目标界面信息
