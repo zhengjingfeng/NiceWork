@@ -476,7 +476,7 @@ Android 组件化
     如果业务组件需要独立运行，则需要单独配置一份AndroidManifest，在gradle的sourceSets根据不同的模式加载不同的AndroidManifest文件。
     	其中集成模式加载的Manifest中不能设置Application和程序入口
 	
-动态代理又看了一遍，面试不要在说错了，弱引用的写法也清除了吧（引用的对象作为参数传给给弱引用），获取引用的对象用get()方法。今天算是取得了一点进步
+动态代理又看了一遍，面试不要在说错了，弱引用的写法也清除了吧，（引用的对象作为参数传给给弱引用），获取引用的对象用get()方法，socket也看了一遍吧。今天算是取得了一点进步
     
     Application类的理解：
     	mApplication在一个Dalvik虚拟机里面只有一个实力，一个App有几个进程，就有几个Dalvik虚拟机
