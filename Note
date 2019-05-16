@@ -473,6 +473,9 @@ Android 组件化
     m业务组件之间没有依赖，不能要用常规的Intent显示进行跳转，需要使用阿里的Arouter，组件间的通信用EventBus.
     资源文件冲突问题：目前是设置资源前缀
     
+    如果业务组件需要独立运行，则需要单独配置一份AndroidManifest，在gradle的sourceSets根据不同的模式加载不同的AndroidManifest文件。
+    	其中集成模式加载的Manifest中不能设置Application和程序入口
+    
     Application类的理解：
     	mApplication在一个Dalvik虚拟机里面只有一个实力，一个App有几个进程，就有几个Dalvik虚拟机
 	m在onCreat()方法里面不要做过多的耗时操作，会影响App的启动速度
