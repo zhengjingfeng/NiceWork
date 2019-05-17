@@ -466,15 +466,15 @@ CompileSdkVersion和BuildToolVersion
 
 Android 组件化
     以前的分包变成了现在的组件
-    公共组件（功能组件）：第三发依赖 常用功能（工具类）自定义控件 基础类 权限
-    业务组件：所有的业务组件依赖依赖公共组件
-    APP壳：对整个项目组件模块进行组装，拼凑成一个完整的APP
-    config.gradle 配置文件  配置项目中的所有第三方库，APP中的版本号，在工程的build.gradle中引入配置文件 apply from: "config.gradle"
-    业务组件之间没有依赖，不能要用常规的Intent显示进行跳转，需要使用阿里的Arouter，组件间的通信用EventBus.
-    资源文件冲突问题：目前是设置资源前缀
+    公共组件（功能组件）：第三发依赖 常用功能（工具类）自定义控件 基础类 权限 步骤1
+    业务组件：所有的业务组件依赖依赖公共组件 步骤3
+    APP壳：对整个项目组件模块进行组装，拼凑成一个完整的APP 步骤5
+    config.gradle 配置文件  配置项目中的所有第三方库，APP中的版本号，在工程的build.gradle中引入配置文件 apply from: "config.gradle" 步骤2
+    业务组件之间没有依赖，不能要用常规的Intent显示进行跳转，需要使用阿里的Arouter，组件间的通信用EventBus.  步骤6
+    资源文件冲突问题：目前是设置资源前缀  步骤7
     
     如果业务组件需要独立运行，则需要单独配置一份AndroidManifest，在gradle的sourceSets根据不同的模式加载不同的AndroidManifest文件。
-    	其中集成模式加载的Manifest中不能设置Application和程序入口
+    	其中集成模式加载的Manifest中不能设置Application和程序入口  步骤4
 	
 动态代理又看了一遍，面试不要再说错了，弱引用的写法也清除了吧，（引用的对象作为参数传给给弱引用），获取引用的对象用get()方法，socket也看了一遍吧。今天算是取得了一点进步
     
