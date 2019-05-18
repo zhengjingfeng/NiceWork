@@ -637,6 +637,9 @@ kotlin:
 	m后台返回支付结果  APP后台
 	m商家发货
 	
+	m后台的二次签名
+	mAndroidManifest配置WXPayEnterActivity 权限等
+	
 	
 	
 	
