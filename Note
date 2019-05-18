@@ -618,7 +618,11 @@ kotlin:
     	性能调优 软件架构 （工具链和中间件）UI 网络 测试工具
 	
 微信支付：
-	m选择商品 请求生成支付点单   APP客户端
+
+	m注册（AppID） 申请权限（微信支付）gradle集成微信支付的SDK
+	
+	
+	m选择商品 请求生成支付订单   APP客户端
 	m请求统一下单API           APP后台
 	m生成预付单 返回预付单信息（prepare_id） 微信支付系统
 	m生成带签名的客户端支付信息 返回信息（LoginPresenter sign） APP后台
