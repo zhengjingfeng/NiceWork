@@ -507,7 +507,7 @@ JS调用:
         }
     }
 
-10大开源框架：
+10大开源框架：（一般看源码不看if（））
     okhttp
     两大核心：dispather  维护同步和异步网路请求的状态（几个3队列），同时维护线程池。
             interceptor
@@ -523,6 +523,8 @@ JS调用:
 
     Glide(谷歌官方推荐的图片加载框架)
         Glide.with(this).load(utl).into(imageView);
+        glide : requestManagerRetriever - requestManager(处理请求的管理类，监听整个组件的生命周期 )-DrawableTypeRequest(将图片转换成GIF或者bitmap )
+
 
     RXJava 响应式编程（比如：下雨打伞，下雨是事件，打伞是响应），异步事件流。
         创建被观察者：create just from三种方法
@@ -534,7 +536,7 @@ JS调用:
             flatMap:
             zip:多个observable合并
 
-一般看源码不看if（）
+        代理的本质是无侵入（不修改你原来代码的情况下）的争强方法
 
 Android 弹窗 https://github.com/limxing/Android-PromptDialog/
 kotlin官方博客：https://blog.jetbrains.com/kotlin/
@@ -623,40 +625,28 @@ kotlin:
 	m注册（AppID） 申请权限（微信支付）gradle集成微信支付的SDK
 
 
-	m选择商品 请求生成支付订单   APP客户端
-	m请求统一下单API           APP后台
-	m生成预付单 返回预付单信息（prepare_id） 微信支付系统
-	m生成带签名的客户端支付信息 返回信息（LoginPresenter sign） APP后台
-	m用户确认支付
-	m掉用SDK（参数）掉起微信支付 APP客户端
-	m发起支付请求              微信客户端
-	m验证支付参数 支付权限等 返回需要支付授权    微信支付系统
-	m确认支付 输入密码 提交支付授权   微信客户端
-	m验证支付授权 完成支付交易 返回支付结果  微信支付系统
-	mAPP回调接口支付状态    APP客户端
-	m去后台查询支付结果  APP客户端
-	m后台返回支付结果  APP后台
-	m商家发货
+	选择商品 请求生成支付订单   APP客户端
+	请求统一下单API           APP后台
+	生成预付单 返回预付单信息（prepare_id） 微信支付系统
+	生成带签名的客户端支付信息 返回信息（LoginPresenter sign） APP后台
+	用户确认支付
+	掉用SDK（参数）掉起微信支付 APP客户端
+	发起支付请求              微信客户端
+	验证支付参数 支付权限等 返回需要支付授权    微信支付系统
+	确认支付 输入密码 提交支付授权   微信客户端
+	验证支付授权 完成支付交易 返回支付结果  微信支付系统
+	APP回调接口支付状态    APP客户端
+	去后台查询支付结果  APP客户端
+	后台返回支付结果  APP后台
+	商家发货
 
-	m后台的二次签名
-	mAndroidManifest配置WXPayEnterActivity 权限等
-	m支付资料：
+	后台的二次签名
+	AndroidManifest配置WXPayEnterActivity 权限等
+	支付资料：
 	https://www.cnblogs.com/dingxiansen/p/9208949.html
 
+突然小知识：
+    使用AndroidStudio开发的童鞋都知道，JAR包放在项目app的libs目录下，而so库放在main目录的jniLibs目录下，如果没有jniLibs目录就创建一个
 
 百度地图：
 	百度地图SDK集成，其实就2点，第一选择你要的SDK（地图、定位、鹰眼轨迹、导航、全景），解压后将libs复制到app下的libs目录下.
-
-
-
-
-
-
-
-
-
-
-
-
-
-    代理的本质是无侵入（不修改你原来代码的情况下）的争强方法
