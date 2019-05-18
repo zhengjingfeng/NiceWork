@@ -643,7 +643,8 @@ kotlin:
 	https://www.cnblogs.com/dingxiansen/p/9208949.html
 	
 	
-	
+百度地图：
+	百度地图SDK集成，其实就2点，第一选择你要的SDK（地图、定位、鹰眼轨迹、导航、全景），解压后将libs复制到app下的libs目录下.
 	
 	
 	
