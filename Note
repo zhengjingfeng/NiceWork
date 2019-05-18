@@ -466,7 +466,24 @@ CompileSdkVersion和BuildToolVersion
 3,可以用高版本的build-tool去构建一个低版本的sdk工程，例如build-tool的版本为28，去构建一个sdk版本为27的
 
 Android 组件化
-    以前的分包变成了现在的模块
+    以前的分包变成了现在的组件
+    公共组件（功能组件）：第三发依赖 常用功能（工具类）自定义控件 基础类 权限 步骤1
+    业务组件：所有的业务组件依赖依赖公共组件 步骤3
+    APP壳：对整个项目组件模块进行组装，拼凑成一个完整的APP 步骤5
+    config.gradle 配置文件  配置项目中的所有第三方库，APP中的版本号，在工程的build.gradle中引入配置文件 apply from: "config.gradle" 步骤2
+    业务组件之间没有依赖，不能要用常规的Intent显示进行跳转，需要使用阿里的Arouter，组件间的通信用EventBus.  步骤6
+    资源文件冲突问题：目前是设置资源前缀  步骤7
+
+    如果业务组件需要独立运行，则需要单独配置一份AndroidManifest，在gradle的sourceSets根据不同的模式加载不同的AndroidManifest文件。
+    	其中集成模式加载的Manifest中不能设置Application和程序入口  步骤4
+
+动态代理又看了一遍，面试不要再说错了，弱引用的写法也清除了吧，（引用的对象作为参数传给给弱引用），获取引用的对象用get()方法，socket也看了一遍吧。今天算是取得了一点进步
+
+    Application类的理解：
+    	Application在一个Dalvik虚拟机里面只有一个实力，一个App有几个进程，就有几个Dalvik虚拟机
+	m在onCreat()方法里面不要做过多的耗时操作，会影响App的启动速度
+	除此之外，由于在Context中可以通过getApplicationContext()获取到Application对象，或者是通过Activity.getApplication()、Service.getApplication()获取到Application，所以可以在Application保存全局的数据，供所有的Activity或者是Service使用。
+
     Arouter:（A->B ）
         注册 B界面将类的信息通过key_value的形式注册到Arouter中
         查询 通过key获取目标界面信息
@@ -597,5 +614,49 @@ kotlin:
 
     https://www.cnblogs.com/mfrbuaa/p/3763560.html
     https://www.runoob.com/w3cnote/mqtt-intro.html
+
+    面试：
+    	性能调优 软件架构 （工具链和中间件）UI 网络 测试工具
+
+微信支付：
+
+	m注册（AppID） 申请权限（微信支付）gradle集成微信支付的SDK
+
+
+	m选择商品 请求生成支付订单   APP客户端
+	m请求统一下单API           APP后台
+	m生成预付单 返回预付单信息（prepare_id） 微信支付系统
+	m生成带签名的客户端支付信息 返回信息（LoginPresenter sign） APP后台
+	m用户确认支付
+	m掉用SDK（参数）掉起微信支付 APP客户端
+	m发起支付请求              微信客户端
+	m验证支付参数 支付权限等 返回需要支付授权    微信支付系统
+	m确认支付 输入密码 提交支付授权   微信客户端
+	m验证支付授权 完成支付交易 返回支付结果  微信支付系统
+	mAPP回调接口支付状态    APP客户端
+	m去后台查询支付结果  APP客户端
+	m后台返回支付结果  APP后台
+	m商家发货
+
+	m后台的二次签名
+	mAndroidManifest配置WXPayEnterActivity 权限等
+	m支付资料：
+	https://www.cnblogs.com/dingxiansen/p/9208949.html
+
+
+百度地图：
+	百度地图SDK集成，其实就2点，第一选择你要的SDK（地图、定位、鹰眼轨迹、导航、全景），解压后将libs复制到app下的libs目录下.
+
+
+
+
+
+
+
+
+
+
+
+
 
     代理的本质是无侵入（不修改你原来代码的情况下）的争强方法
