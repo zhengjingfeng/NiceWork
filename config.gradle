@@ -47,6 +47,11 @@ ext {
 
             "greendao"                : 'org.greenrobot:greendao:3.2.2',
 
-            "GreenDaoUpgradeHelper"   : 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.1.0'
+            "GreenDaoUpgradeHelper"   : 'com.github.yuweiguocn:GreenDaoUpgradeHelper:v2.1.0',
+
+            "dagger-android" : 'com.google.dagger:dagger-android:2.11',
+            "dagger-android-support" :'com.google.dagger:dagger-android-support:2.11',
+            "dagger-android-processor" : 'com.google.dagger:dagger-android-processor:2.11'
+
     ]
 }
