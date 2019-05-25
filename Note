@@ -718,3 +718,29 @@ APP开发流程：
         那么就可以通过：
         Constructor constructor = a.getDeclaredConstructor(String.class, int.class);
         来获取这个构造函数。
+
+        //注解
+            @Target(ElementType.FIELD)
+            @Retention(RetentionPolicy.RUNTIME)
+            public @interface TestAnotation {
+                public int id() default -1;
+
+                public String name() default "";
+            }
+
+            isAnnotationPresent（A.isAnnotationPresent(B.class)；意思就是：注释B是否在此A上。如果在则返回true；不在则返回false。）
+            getAnnotation 获取注解
+
+加固 省电 省流量 性能优化 数据结构与算法
+
+耗电：硬件耗电（cpu,gpu,gps,wifi,屏幕，3G/4G蜂窝信号）
+    不能一直点亮屏幕（根据系统的休眠，熄屏 ），除非看视频
+    频繁的发送接收数据（蜂窝耗电，唤醒硬件和发送接收数据三个峰值，唤醒后存活一段时间，减少唤醒硬件耗电）
+
+Bind机制：
+    用户空间/内核空间
+    用户空间与内核空间 交互 通过系统调用，主要通过函数
+        copy_from_user()
+        copy_to_user()
+
+    内存映射：

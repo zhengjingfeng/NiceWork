@@ -397,7 +397,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         /**
          *
          */
-        RED(255,0,0),GREN(0,255,0),BLUE(0,255,255);
+        RED(255, 0, 0), GREN(0, 255, 0), BLUE(0, 255, 255);
 
         private int r;
 
