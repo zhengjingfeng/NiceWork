@@ -513,7 +513,6 @@ JS调用:
     两大核心：dispather  维护同步和异步网路请求的状态（3队列），同时维护线程池。
             interceptor
 
-
     dispather - asycall -excetor.excete(asycall)
                 asycall.excete()
 
@@ -638,7 +637,6 @@ kotlin:
 
 	m注册（AppID） 申请权限（微信支付）gradle集成微信支付的SDK
 
-
 	选择商品 请求生成支付订单   APP客户端
 	请求统一下单API           APP后台
 	生成预付单 返回预付单信息（prepare_id） 微信支付系统
@@ -724,7 +722,6 @@ APP开发流程：
             @Retention(RetentionPolicy.RUNTIME)
             public @interface TestAnotation {
                 public int id() default -1;
-
                 public String name() default "";
             }
 
@@ -752,5 +749,25 @@ material design：原材料设计
     colorPrimaryDark：主色--深色，一般可以用于状态栏颜色、底部导航栏
     colorAccent：（代表各个控件的基调颜色--CheckBox、RadioButton、ProgressBar等等）
 
+    可以考虑用兼容包里面的view，不然低版本效果就会不同 Android.supportt.v7.vidget.(listPopwindow,popMenu, )
 
-状态栏透明
+面试没答好的题：
+    组件化 flatmap 做过那秀优化 ANR
+
+屏幕适配：
+    布局适配（使用相对布局）
+    组件适配（wrap_content match_parent weigth）
+    使用限定符（最小宽度限定符）平板/电视（>7）双面板布局：resource/layout_sw600dp/main_activoty.xml
+    自适应图片（.9）
+
+    根据屏幕配置加载不同的用户界面流程
+
+    屏幕密度适配：
+        使用密度无关像素dp.sp/百分比适配
+        图片（提供备用图片）  xxdpi吗的还要考虑iOS所以用xdpi
+
+并行和并发
+    并行是同时使用，并发是一个个的时间片。
+    进程是操作系统进行资源分配的最小单位，线程是CPU调度和分配的基本单位。
+    单CPU无法被多个进程并行使用，只能进行并发，多CPU可以多个进程并行。
+    单CPU多核可以线程并行
