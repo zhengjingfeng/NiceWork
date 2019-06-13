@@ -494,6 +494,10 @@ Scoket通信：
 	Socket提供了程序内部与外界通信的端口并为通信双方提供了数据传输通道。
 	Socket很简单 两种方式的Socket(TCP/UDP) TCP以流的方式发送数据，UDP以包的形式发送数据。
 	
+	Java中的网络通信是通过Socket实现的，Socket分为ServerSocket和Socket两大类.
+		ServerSocket用于服务端，可以通过accept方法监听请求，监听到请求返回Socket;
+		Socket用于具体完成数据传输，客户端直接使用Socket发起请求并传输数据。
+	
 	Socket socket = new Socket("111", 111);
 	
         ServerSocket serverSocket = new ServerSocket(111);
