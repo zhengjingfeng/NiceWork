@@ -490,18 +490,26 @@ Android 组件化
 	    Service.getApplication()获取到Application，
 	    所以可以在Application保存全局的数据，供所有的Activity或者是Service使用。
 
-Scoket通信：
+Scoket通信：参考https://blog.csdn.net/pbyang_love/article/details/81676949
 	Socket提供了程序内部与外界通信的端口并为通信双方提供了数据传输通道。
 	Socket很简单 两种方式的Socket(TCP/UDP) TCP以流的方式发送数据，UDP以包的形式发送数据。
 	
 	Java中的网络通信是通过Socket实现的，Socket分为ServerSocket和Socket两大类.
 		ServerSocket用于服务端，可以通过accept方法监听请求，监听到请求返回Socket;
 		Socket用于具体完成数据传输，客户端直接使用Socket发起请求并传输数据。
+		
+	ServerSocket的使用可以分为三步：
+
+	1）创建ServerSocket。ServerSocket的构造方法一共有5个，用起来最方便的是ServerSocket（int port）,只需要一个port（端口号）就可以了。
+
+	2）调用创建出来的ServerSocket的accept方法进行监听。accept方法是阻塞方法，也就是说调用accept方法后程序会停下来等待连接请求，在接收到请求之前程序将不会往下走，当接收到请求后accept方法会返回一个Socket。
+
+	3）使用accept方法返回的Socket与客户端进行通信。
+	
+	ServerSocket serverSocket = new ServerSocket(111);
+	Socket socket = serverSocket.accept();
 	
 	Socket socket = new Socket("111", 111);
-	
-        ServerSocket serverSocket = new ServerSocket(111);
-	Socket socket = serverSocket.accept();
 
 弹窗样式：
     https://github.com/lingcimi/jjdxm_dialogui
