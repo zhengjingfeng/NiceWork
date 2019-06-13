@@ -493,6 +493,8 @@ Android 组件化
 Scoket通信：
 	Socket提供了程序内部与外界通信的端口并为通信双方提供了数据传输通道。
 	Socket很简单 两种方式的Socket(TCP/UDP) TCP以流的方式发送数据，UDP以包的形式发送数据。
+	Socket socket = new Socket("111", 111);
+        ServerSocket serverSocket = new ServerSocket(111);
 
 弹窗样式：
     https://github.com/lingcimi/jjdxm_dialogui
