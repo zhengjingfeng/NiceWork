@@ -510,6 +510,9 @@ Scoket通信：参考https://blog.csdn.net/pbyang_love/article/details/81676949
 	Socket socket = serverSocket.accept();
 	
 	Socket socket = new Socket("111", 111);
+	
+	长连接和短连接的产生在于client和server采取的关闭策略，具体的应用场景采用具体的策略，没有十全十美的选择，只有合适的选择。
+		心跳包主要也就是用于长连接的保活和断线处理。
 
 弹窗样式：
     https://github.com/lingcimi/jjdxm_dialogui
