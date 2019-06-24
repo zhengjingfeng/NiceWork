@@ -811,3 +811,16 @@ MD5:消息摘要，验证文件的完整性和正确性，主要正对的是文�
 Base64：比如图片文件，附件是二进制文件。电子邮件的协议不能支持到，使用base64进行编码，传输，在客户端再去解码得到原始文件。还有就是进行简单的加解密。
 
 gradle配置变动的时候，需要同步gradle文件，才能通过编译
+
+用代码添加子View
+	for (int i = 0; i < count; i++) {
+            ImageView iv = new ImageView(context);
+            iv.setImageResource(R.mipmap.ic_launcher);
+
+            DisplayMetrics displayMetrics = new DisplayMetrics();
+            context.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+            float density = displayMetrics.density;
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams((int)(25*density),(int)(25*density));
+            lp.leftMargin = 8;
+            holder.llHotXing.addView(iv,lp);
+        }
