@@ -10,41 +10,6 @@
 
 1个int占4个字节，一个byte占一个字节空间，一个字节占8位，byte的取之范围-128～127，因为第八位为符号为。1KB = 1024B 1B = 8bit
 
-//git init  把一个文件夹变成git本地仓库
-//git status
-// git add(文件名) 把文件修改添加到暂存区
-//git checkout -- Note.txt 撤销缓存区修改  git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
-// git commit（把add的代码提交到分支）把暂存区的所有内容添加到当前分支
-//git log 提交日志
-//git reset --Hard HEAD^ 回退上一个版本
-
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin git@github.com:zhengjingfeng/git.git
-git push -u origin master
-
-查看分支：git branch
-
-创建分支：git branch <name>
-
-切换分支：git checkout <name>
-
-创建+切换分支：git checkout -b <name>
-
-合并某分支到当前分支：git merge <name>
-
-删除分支：git branch -d <name>
-
-// git clone git branch git -- help(查看命令)
-// git checkout(剪出分支)
-//fork/clone(add commit push)
-
-清空git缓存
-git rm -r --cached .
-git add .
-git commit -m 'update .gitignore'
-
 //网络请求开始
 http 请求3位的返回码中 3开头是重定向，4开头代表客服端错误（404页面：file not found），5开头代表服务器错误，当然200是正常响应
 cookie是客服端保持状态的方案 session是在服务端保持状态的方案
@@ -920,3 +885,8 @@ feature分支是否推到远程，取决于你是否和你的小伙伴合作在�
 如果git pull提示no tracking information，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream-to <branch-name> origin/<branch-name>。
 
 这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+
+清空git缓存
+git rm -r --cached .
+git add .
+git commit -m 'update .gitignore'
