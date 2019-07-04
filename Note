@@ -824,3 +824,41 @@ gradle配置变动的时候，需要同步gradle文件，才能通过编译
             lp.leftMargin = 8;
             holder.llHotXing.addView(iv,lp);
         }
+git 再次学习：
+git init
+
+git add （添加到暂存区）
+git commit -m "" （保存快照，把暂存区的文件提交到当前分支）
+
+工作区与暂存区
+需要提交的文件修改通通放到暂存区，然后，一次性提交暂存区的所有修改。
+
+git log --pretty=oneline （提交历史）
+git reflog 记录没一次的吗命令 （命令历史）
+
+git reset --hard HEAD^ 回退上一个版本
+git reset --hard commit_id
+
+git statu （工作去状态）
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
