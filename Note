@@ -891,4 +891,4 @@ git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
 
-tip：本地分支切换前，先把当前分支的修改加入缓存区
+tip：本地分支切换前，先把当前分支的修改先提交本地仓库
