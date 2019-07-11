@@ -896,3 +896,37 @@ tip：本地分支切换前，先把当前分支的修改先提交本地仓库
 git branch -a  查看所有分支
 git branch -d dev  删除本地分支
 git push origin --delete dev  删除远程分支
+
+layoutparams的使用：
+	for (int i = 0; i < startTotalCount; i++) {
+	    ImageView iv = new ImageView(context);
+	    if (i < count) {
+	        iv.setImageResource(R.mipmap.popular_hot_active);
+	    } else {
+	        iv.setImageResource(R.mipmap.popular_hot_inactive);
+	    }
+	    DisplayMetrics displayMetrics = new DisplayMetrics();
+	    context.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+	    float density = displayMetrics.density;
+	    LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams((int) (10 * density), (int) (9 * density));
+	    lp.leftMargin = 8;
+	    holder.llHotXing.addView(iv, lp);
+	}
+	
+	TextView textView = new TextView(context);
+	ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
+	layoutParams.width=100;
+	layoutParams.height=200;
+	textView.setLayoutParams(layoutParams);
+	
+	//设置权重比例
+	layoutParams1.weight=1;
+	
+	//设置上部间距
+	layoutParams1.topMargin=5;
+	
+	//设置右边间距
+	layoutParams1.setMarginEnd(20);
+	
+	//设置四周间距
+	layoutParams1.setMargins(3,3,3,3);
