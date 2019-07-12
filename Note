@@ -940,7 +940,7 @@ package tutorial;                #package是为了防止命名冲突（naming co
 message Person {                 #定义message   
   required string name = 1;      #数字1是唯一的标签（unique tag）。     
   required int32 id = 2;	 required必选字段	
-  optional string email = 3;     optional可选字段
+  optional string email = 3;     optional可选字段 要么给定默认值 要么 数值类型为零，字符串为空字符串，bools为fasle
  
   enum PhoneType {
     MOBILE = 0;
