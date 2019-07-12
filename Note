@@ -932,14 +932,33 @@ layoutparams的使用：
 	layoutParams1.setMargins(3,3,3,3);
 
 ProtocolBuffer:
-syntax = "proto2"          版本号
-message Persion {           message等同于class
-	required int64 id = 1;      required必选字段
-	required string name = 2;
-	optional string email =3    optional可选字段
-	repeat  Wife wife = 4	    repeat可重复的
-}
 
+syntax = "proto2";		 版本号
+ 
+package tutorial;                #package是为了防止命名冲突（naming conflicts）
+ 
+message Person {                 #定义message   
+  required string name = 1;      #数字1是唯一的标签（unique tag）。     
+  required int32 id = 2;	 required必选字段	
+  optional string email = 3;     optional可选字段
+ 
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+ 
+  message PhoneNumber {
+    required string number = 1;
+    optional PhoneType type = 2 [default = HOME];    #默认值是HOME
+  }
+ 
+  repeated PhoneNumber phones = 4;
+}
+ 
+message AddressBook {
+  repeated Person people = 1;   repeated可重复的
+}
 
 
 
