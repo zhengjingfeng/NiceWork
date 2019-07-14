@@ -301,7 +301,6 @@ condition = lock.newCondition();
          }
          return null;
 
-
     BaseDexClassLoader->DexPathList pathList 字段->  Element[] DexElements 字段是我们需要的。
 
 动脑学院 腾讯学院
@@ -891,6 +890,8 @@ git rm -r --cached .
 git add .
 git commit -m 'update .gitignore'
 
+LayoutParams:ViewGroup的静态内部类
+
 tip：本地分支切换前，先把当前分支的修改先提交本地仓库
 
 git branch -a  查看所有分支
@@ -912,50 +913,50 @@ layoutparams的使用：
 	    lp.leftMargin = 8;
 	    holder.llHotXing.addView(iv, lp);
 	}
-	
+
 	TextView textView = new TextView(context);
 	ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200);
 	layoutParams.width=100;
 	layoutParams.height=200;
 	textView.setLayoutParams(layoutParams);
-	
+
 	//设置权重比例
 	layoutParams1.weight=1;
-	
+
 	//设置上部间距
 	layoutParams1.topMargin=5;
-	
+
 	//设置右边间距
 	layoutParams1.setMarginEnd(20);
-	
+
 	//设置四周间距
 	layoutParams1.setMargins(3,3,3,3);
 
 ProtocolBuffer:
 
 syntax = "proto2";		 版本号
- 
+
 package tutorial;                #package是为了防止命名冲突（naming conflicts）
- 
-message Person {                 #定义message   
-  required string name = 1;      #数字1是唯一的标签（unique tag）。     
-  required int32 id = 2;	 required必选字段	
+
+message Person {                 #定义message
+  required string name = 1;      #数字1是唯一的标签（unique tag）。
+  required int32 id = 2;	 required必选字段
   optional string email = 3;     optional可选字段 要么给定默认值 要么 数值类型为零，字符串为空字符串，bools为fasle
- 
+
   enum PhoneType {
     MOBILE = 0;
     HOME = 1;
     WORK = 2;
   }
- 
+
   message PhoneNumber {
     required string number = 1;
     optional PhoneType type = 2 [default = HOME];    #默认值是HOME
   }
- 
+
   repeated PhoneNumber phones = 4;
 }
- 
+
 message AddressBook {
   repeated Person people = 1;   repeated可重复的
 }
