@@ -961,6 +961,6 @@ message AddressBook {
   repeated Person people = 1;   repeated可重复的
 }
 
-
+V1签名是对jar包的签名 V2签名是对整个apk的签名
 
 
