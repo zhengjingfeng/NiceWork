@@ -963,4 +963,4 @@ message AddressBook {
 
 V1签名是对jar包的签名 V2签名是对整个apk的签名
 
-jsh互调：addJavascriptInterface（类名，别名）
+jsh互调：addJavascriptInterface（类的实例，别名）
