@@ -854,7 +854,9 @@ git add readme.txt （当Git无法自动合并分支时，就必须首先解决�
 
 用git log --graph命令可以看到分支合并图。
 
-git branch -d dev 删除分支
+git branch -a  查看所有分支
+git branch -d dev  删除本地分支
+git push origin --delete dev  删除远程分支
 
 git remote 查看远程仓库信息
 
@@ -893,10 +895,6 @@ git commit -m 'update .gitignore'
 LayoutParams:ViewGroup的静态内部类
 
 tip：本地分支切换前，先把当前分支的修改先提交本地仓库
-
-git branch -a  查看所有分支
-git branch -d dev  删除本地分支
-git push origin --delete dev  删除远程分支
 
 layoutparams的使用：
 	for (int i = 0; i < startTotalCount; i++) {
